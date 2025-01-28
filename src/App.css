@@ -1,0 +1,176 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Main container to take up remaining space */
+  #root {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+.header {
+  font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+  font-weight: 300; /* Use light font weight */
+  font-size: 11px; /* Adjust the font size as needed */
+  background: linear-gradient(to right, white 40%, rgb(237, 92, 22) 100%);
+  padding-left: 20px; /* Add some padding to the left */
+  height: 30px; /* Adjust the height as needed */
+  display: flex; /* Use Flexbox */
+  align-items: center; /* Center items vertically */
+  /* justify-content: center; Center items horizontally */
+}
+
+.header ul {
+  list-style: none; /* Remove default bullets */
+  padding: 0;
+  display: flex; /* Display list items in a row */
+}
+
+.header ul li {
+  position: relative; /* Required for the pseudo-element */
+  margin-right: 25px; /* Add some space between items */
+  transition: transform 0.3s ease; /* Smooth transition for transform property */
+
+}
+
+.header ul li:not(:last-child)::after {
+  content: ' | '; /* Add the separator */
+}
+
+.header ul li::before {
+  content: '';
+  position: absolute;
+  bottom: -2px; /* Position the line just below the text */
+  left: 0;
+  width: 0;
+  height: 2px; /* Adjust the height of the line */
+  background: linear-gradient(to right, rgb(240, 162, 17), rgb(237, 92, 22));
+  transition: width 0.3s ease; /* Smooth transition */
+}
+
+.header ul li:hover::before {
+  width: 100%; /* Expand the line to full width on hover */
+}
+
+.header ul li:hover {
+  color: rgb(240, 162, 17); /* Change text color on hover */
+  transform: scale(1.2); /* Scale up the text on hover */
+}
+
+.subHeader {
+  font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+  background: linear-gradient(to right, white 25%, rgb(240, 162, 17) 100%);  padding: 10px; /* Add some padding */
+  color: white; /* Change text color to white */
+  display: flex; /* Use Flexbox */
+  align-items: center; /* Center items vertically */
+}
+
+.subHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f0f0f0; /* Adjust the background color as needed */
+  }
+  
+  .subHeaderContent {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+  }
+  
+  .search {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+  
+  .search input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .search button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  
+  .contactUs {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .languageOptions select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .followUs {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .followUs img {
+    width: 25px; /* Adjust the size as needed */
+    height: 25px; /* Adjust the size as needed */
+    position: relative; /* Required for the pseudo-element */
+    transition: transform 0.3s ease; /* Smooth transition for transform property */
+  }
+  
+  .followUs img::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Position the line just below the image */
+    left: 50%;
+    width: 0;
+    height: 2px; /* Adjust the height of the line */
+    background-color: rgba(0, 0, 0, 0.2); /* Shadow color */
+    transition: width 0.3s ease; /* Smooth transition for width */
+    transform: translateX(-50%);
+  }
+  
+  .followUs img:hover {
+    transform: scale(1.2); /* Scale up the image slightly on hover */
+  }
+  
+  .followUs img:hover::after {
+    width: 100%; /* Expand the line to full width on hover */
+  }
+
+.logo {
+  width: 120px; /* Adjust the width as needed */
+  height: 80px; /* Adjust the height as needed */
+}
+
+.footer {
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+    color: rgb(237, 92, 22); /* Change text color */
+    display: flex; /* Use Flexbox */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Center items horizontally */
+    background: linear-gradient(to right, rgb(237, 92, 22), white, white, white, white, rgb(240, 162, 17));
+    padding: 20px;
+    text-align: center;
+    color: white;
+    margin-top: auto; /* Push the footer to the bottom */
+  }
+
+  .footerContent {
+    left: 100px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+    color: rgb(237, 92, 22); /* Change text color */
+    font-size: 11px; /* Adjust the font size as needed */
+  }
