@@ -17,7 +17,7 @@ html, body {
 }
 
 h2 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Lexend Giga', sans-serif;
 }
 
 /* Header Styling */
@@ -55,7 +55,8 @@ h2 {
 
 /* Subheader */
 .subHeader {
-    font-family: 'Didact Gothic', sans-serif;
+    font-family: 'Lexend Giga', sans-serif;
+    font-weight: 250;
     background: linear-gradient(to right, white 25%, rgb(240, 162, 17) 100%);
     color: white;
     display: flex;
@@ -97,9 +98,8 @@ max-width: 400px;
     flex: 1;
     padding: 20px;
     border-radius: 10px;
-    background-color: #f9f9f9;
+    background-color: rgba(237, 92, 22, 0.05);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    
 }
 
 .brief-news h2 {
@@ -131,7 +131,7 @@ max-width: 400px;
     flex: 1;
     padding: 20px;
     border-radius: 10px;
-    background-color: #f9f9f9;
+    background-color: rgba(237, 92, 22, 0.05);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -179,12 +179,22 @@ max-width: 400px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: white;
     height: 70vh;
+    background-image: url('/src/assets/globe.png');
+    background-size: contain; /* Ensure the image fits within the div */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
 }
+
+carousel-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
 
 /* Multimodal Login Box */
 .multiNodal {
-    border-top: 20px solid #ccc;
-    border-bottom: 20px solid #ccc;
+    border-top: 20px solid rgba(244, 190, 88, 0.25);
+    border-bottom: 20px solid rgba(244, 190, 88, 0.25);
     flex: 1;
     display: flex;
     justify-content: center;
@@ -282,7 +292,7 @@ max-width: 400px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(to right, rgb(237, 92, 22), white, white, white, white, rgb(240, 162, 17));
+    background: linear-gradient(to right, rgb(237, 92, 22), white, white, white, white, white, white, white, white, white, rgb(240, 162, 17));
     padding: 20px;
     text-align: center;
     color: white;
@@ -371,3 +381,83 @@ max-width: 400px;
         margin-right: 0;
     }
 }
+
+.hidden {
+    display: none;
+  }
+  
+  /* Ensure the MultiNodal section takes up most of the height */
+  .multiNodal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80vh; /* Adjust this for desired height */
+    align-items: center;
+    width: 85%;
+  }
+  
+  /* Navigation buttons should be stacked and nearly full-width */
+  .stacked-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 8px; /* Reduced space between buttons */
+  }
+  
+  /* Adjust Navigation Button Appearance */
+  .nav-button {
+    font-family: 'Didact Gothic', sans-serif;
+    width: 95%; /* Almost end-to-end */
+    height: 35px; /* Lower height for a sleeker look */
+    padding: 8px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align text to the left */
+    text-align: left;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+  }
+  
+  .nav-button:hover {
+    background: #e2e6ea;
+  }
+  
+  /* Register & Login Buttons - Stay Centered */
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Keeps Register & Login side by side */
+    width: 100%;
+  }
+  
+  .action-button {
+    font-family: 'Didact Gothic', sans-serif;
+    width: 90%;
+    height: 50px; /* Slightly larger for usability */
+    padding: 15px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Keep text centered */
+    text-align: center;
+    background-color: #ff8c00; /* Lamp Finance Orange */
+    color: white;
+  }
+  
+  .action-button:hover {
+    background-color: #e67e00;
+  }
+  
+  
+  
+  

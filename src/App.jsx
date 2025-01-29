@@ -2,6 +2,9 @@ import { useEffect, useRef } from 'react';
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import logo from './assets/logo.png';
 import instagram from './assets/instagram.png';
 import twitter from './assets/twitter.png';
@@ -11,7 +14,22 @@ import youtube from './assets/youtube.png';
 import tiktok from './assets/tiktok.png';
 import './App.css';
 
+  const images = [
+      './assets/1.png',
+      './assets/2.png',
+      './assets/3.png',
+      './assets/4.png',
+      './assets/5.png',
+      './assets/6.png',
+      './assets/7.png',
+      './assets/8.png',
+      './assets/9.png',
+      './assets/11.png',
+      './assets/12.png',
+  ];
+
 const App = () => {
+
   const briefNews = [
     "Breaking: Major breakthrough in AI research",
     "Local elections results announced today",
@@ -44,6 +62,16 @@ const App = () => {
       list.innerHTML += list.innerHTML; // Duplicate content for seamless scrolling
     }
   }, []);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+  };
 
   return (
     <>
@@ -100,55 +128,77 @@ const App = () => {
         </div>
 
        
-          <div className="login-container">
-            <div><p><h2>New to Lamp Finance?</h2> Click "Register" to sign up today. It only takes a few minutes!</p></div>
-             <div className="multiNodal">
-            {/* First Row */}
-            <div className="row">
-              <div className="input-container">
-                <label htmlFor="pin">PIN</label>
-                <input type="text" id="pin" placeholder="Enter your PIN" />
-              </div>
-              <div className="input-container">
-                <label htmlFor="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your Password" />
-              </div>
-            </div>
-            <div className="row">
-              <div className="input-container">
-                <label htmlFor="username">Username</label>
-                <input type="text" id="username" placeholder="Enter your Username" />
-              </div>
-              <div className="input-container">
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" placeholder="Enter your Email" />
-              </div>
-            </div>
+        <div className="login-container">
+  {/* User Prompt Section */}
+  <div>
+    <p>
+      <h2>New to Lamp Finance?</h2> Click "Register" to sign up today. It only takes a few minutes!
+    </p>
+  </div>
 
-            {/* Second Row */}
-            <div className="row">
-              <div className="input-container full-width">
-                <label htmlFor="additional-info">Additional Info</label>
-                <input type="text" id="additional-info" placeholder="Optional field" />
-              </div>
-            </div>
-            </div>
-            {/* Third Row */}
-            <div className="row">
-              <div className="input-container">
-                <button type="button">Register</button>
-              </div>
-              <div className="input-container">
-                <button type="button">Login</button>
-              </div>
-              <div className="input-container">
-                <button type="button">Reset</button>
-              </div>
-            </div>
-            <div className='tinyText'>By logging in, you agree to our Terms of Service and Privacy Policy. We prioritize the security of your information and use industry-standard encryption to protect your data. Unauthorized access is strictly prohibited and may be subject to legal action.
-            </div>
-          </div>
+  {/* MultiNodal Section */}
+  <div className="multiNodal">
+    {/* Stacked Navigation Buttons */}
+    <div className="row stacked-buttons">
+      <button className="nav-button">Home</button>
+      <button className="nav-button">About Us</button>
+      <button className="nav-button">Services</button>
+      <button className="nav-button">Find An Agent</button>
+      <button className="nav-button">Careers</button>
+      <button className="nav-button">FAQs</button>
+      <button className="nav-button">Contact</button>
+    </div>
+
+    {/* Register & Login Side by Side */}
+    <div className="row action-buttons">
+      <button className="action-button" id="registerBtn" onClick={() => toggleForm('register')}>
+        Register
+      </button>
+      <button className="action-button" id="loginBtn" onClick={() => toggleForm('login')}>
+        Login
+      </button>
+    </div>
+
+    {/* Dynamic Form (Initially Hidden) */}
+    <div id="formContainer" className="hidden">
+      <div className="row">
+        <div className="input-container">
+          <label htmlFor="username">Username</label>
+          <input type="text" id="username" placeholder="Enter your Username" />
         </div>
+        <div className="input-container">
+          <label htmlFor="email">Email</label>
+          <input type="email" id="email" placeholder="Enter your Email" />
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="input-container">
+          <label htmlFor="pin">PIN</label>
+          <input type="text" id="pin" placeholder="Enter your PIN" />
+        </div>
+        <div className="input-container">
+          <label htmlFor="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your Password" />
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="input-container full-width">
+          <label htmlFor="additional-info">Additional Info</label>
+          <input type="text" id="additional-info" placeholder="Optional field" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Footer Disclaimer */}
+  <div className="tinyText">
+    By logging in, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.  
+    Your security is our priority. Unauthorized access is strictly prohibited.
+  </div>
+</div>
+</div>
 
       <footer className="footer">
         <div className="followUs">
