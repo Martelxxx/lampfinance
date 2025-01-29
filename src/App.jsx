@@ -12,6 +12,7 @@ import facebook from './assets/facebook.png';
 import linkedin from './assets/linkedin.png';
 import youtube from './assets/youtube.png';
 import tiktok from './assets/tiktok.png';
+import home from './assets/home.png';
 import './App.css';
 
   const images = [
@@ -140,7 +141,7 @@ const App = () => {
   <div className="multiNodal">
     {/* Stacked Navigation Buttons */}
     <div className="row stacked-buttons">
-      <button className="nav-button">Home</button>
+      <button className="nav-button home">Home</button>
       <button className="nav-button">About Us</button>
       <button className="nav-button">Services</button>
       <button className="nav-button">Find An Agent</button>

@@ -6,7 +6,7 @@ html, body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    background-color: #f6f9fc; /* Light background for better contrast */
+    background-color: white; /* Light background for better contrast */
 }
 
 /* Main container to take up remaining space */
@@ -292,10 +292,10 @@ carousel-image {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(to right, rgb(237, 92, 22), white, white, white, white, white, white, white, white, white, rgb(240, 162, 17));
+    background: linear-gradient(to right, white, white, white, white, white, white, white, rgba(237, 92, 22, 0.5), rgba(240, 162, 17, 0.75));
     padding: 20px;
     text-align: center;
-    color: white;
+    color: #ed5c16;
     margin-top: auto;
 }
 
@@ -406,26 +406,59 @@ carousel-image {
   }
   
   /* Adjust Navigation Button Appearance */
-  .nav-button {
+.nav-button {
     font-family: 'Didact Gothic', sans-serif;
     width: 95%; /* Almost end-to-end */
     height: 35px; /* Lower height for a sleeker look */
     padding: 8px 15px;
     font-size: 16px;
     border: none;
-    border-radius: 6px;
     cursor: pointer;
-    transition: 0.3s;
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Align text to the left */
+    justify-content: flex-start;
     text-align: left;
-    background: #f8f9fa;
-    border: 1px solid #ddd;
-  }
+    background: white;
+    position: relative;
+    overflow: hidden; /* Prevents animation overflow */
+    transition: border 0.7s ease-in-out;
+}
+
+/* Pseudo-element for the animated border */
+.nav-button::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    left: 0;
+    border-right: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+}
+
+/* Hover Effect: Persistent Animated Highlight from Bottom-Left to Top-Right */
+.nav-button:hover::after {
+    width: 100%;
+    height: 100%;
+    border-right: 3px solid #ffd700; /* Yellow */
+    border-bottom: 3px solid #ff8c00; /* Orange */
+}
   
-  .nav-button:hover {
-    background: #e2e6ea;
+  /* Keyframes for the Animation */
+  @keyframes borderAnimation {
+    0% {
+      border-right: 3px solid transparent;
+      border-bottom: 3px solid #ff8c00; /* Starts with Orange at the bottom-left */
+    }
+    50% {
+      border-right: 3px solid #ff8c00;
+      border-bottom: 3px solid #ffd700; /* Transition to Yellow */
+    }
+    100% {
+      border-right: 3px solid #ffd700;
+      border-bottom: 3px solid transparent; /* Ends with Yellow at the top-right */
+    }
   }
   
   /* Register & Login Buttons - Stay Centered */
@@ -450,12 +483,12 @@ carousel-image {
     align-items: center;
     justify-content: center; /* Keep text centered */
     text-align: center;
-    background-color: #ff8c00; /* Lamp Finance Orange */
+    background-color: #f0a211; /* Lamp Finance Orange */
     color: white;
   }
   
   .action-button:hover {
-    background-color: #e67e00;
+    background-color: #ed5c16;
   }
   
   
