@@ -1,176 +1,373 @@
+/* Global Styles */
 html, body {
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 16px;
     height: 100%;
     margin: 0;
     display: flex;
     flex-direction: column;
-  }
-  
-  /* Main container to take up remaining space */
-  #root {
+    background-color: #f6f9fc; /* Light background for better contrast */
+}
+
+/* Main container to take up remaining space */
+#root {
     flex: 1;
     display: flex;
     flex-direction: column;
-  }
+}
 
+h2 {
+    font-family: 'Cinzel', serif;
+}
+
+/* Header Styling */
 .header {
-  font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
-  font-weight: 300; /* Use light font weight */
-  font-size: 11px; /* Adjust the font size as needed */
-  background: linear-gradient(to right, white 40%, rgb(237, 92, 22) 100%);
-  padding-left: 20px; /* Add some padding to the left */
-  height: 30px; /* Adjust the height as needed */
-  display: flex; /* Use Flexbox */
-  align-items: center; /* Center items vertically */
-  /* justify-content: center; Center items horizontally */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    background: linear-gradient(to right, white 40%, rgb(237, 92, 22) 100%);
+    padding-left: 20px;
+    height: 30px;
+    display: flex;
+    align-items: center;
 }
 
 .header ul {
-  list-style: none; /* Remove default bullets */
-  padding: 0;
-  display: flex; /* Display list items in a row */
+    list-style: none;
+    padding: 0;
+    display: flex;
 }
 
 .header ul li {
-  position: relative; /* Required for the pseudo-element */
-  margin-right: 25px; /* Add some space between items */
-  transition: transform 0.3s ease; /* Smooth transition for transform property */
-
+    position: relative;
+    margin-right: 25px;
+    transition: transform 0.3s ease;
 }
 
 .header ul li:not(:last-child)::after {
-  content: ' | '; /* Add the separator */
-}
-
-.header ul li::before {
-  content: '';
-  position: absolute;
-  bottom: -2px; /* Position the line just below the text */
-  left: 0;
-  width: 0;
-  height: 2px; /* Adjust the height of the line */
-  background: linear-gradient(to right, rgb(240, 162, 17), rgb(237, 92, 22));
-  transition: width 0.3s ease; /* Smooth transition */
-}
-
-.header ul li:hover::before {
-  width: 100%; /* Expand the line to full width on hover */
+    content: ' | ';
 }
 
 .header ul li:hover {
-  color: rgb(240, 162, 17); /* Change text color on hover */
-  transform: scale(1.2); /* Scale up the text on hover */
+    color: rgb(240, 162, 17);
+    transform: scale(1.2);
 }
 
+/* Subheader */
 .subHeader {
-  font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
-  background: linear-gradient(to right, white 25%, rgb(240, 162, 17) 100%);  padding: 10px; /* Add some padding */
-  color: white; /* Change text color to white */
-  display: flex; /* Use Flexbox */
-  align-items: center; /* Center items vertically */
-}
-
-.subHeader {
+    font-family: 'Didact Gothic', sans-serif;
+    background: linear-gradient(to right, white 25%, rgb(240, 162, 17) 100%);
+    color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #f0f0f0; /* Adjust the background color as needed */
-  }
-  
-  .subHeaderContent {
+    padding: 10px 30px;
+}
+
+.subHeaderContent {
     display: flex;
     align-items: center;
     gap: 100px;
-  }
-  
-  .search {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-  }
-  
-  .search input {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .search button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-left: 5px;
-  }
-  
-  .contactUs {
-    margin-right: 20px;
-    text-decoration: none;
-    color: #333;
-  }
-  
-  .languageOptions select {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-
-  .followUs {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-
-  .followUs img {
-    width: 25px; /* Adjust the size as needed */
-    height: 25px; /* Adjust the size as needed */
-    position: relative; /* Required for the pseudo-element */
-    transition: transform 0.3s ease; /* Smooth transition for transform property */
-  }
-  
-  .followUs img::after {
-    content: '';
-    position: absolute;
-    bottom: -5px; /* Position the line just below the image */
-    left: 50%;
-    width: 0;
-    height: 2px; /* Adjust the height of the line */
-    background-color: rgba(0, 0, 0, 0.2); /* Shadow color */
-    transition: width 0.3s ease; /* Smooth transition for width */
-    transform: translateX(-50%);
-  }
-  
-  .followUs img:hover {
-    transform: scale(1.2); /* Scale up the image slightly on hover */
-  }
-  
-  .followUs img:hover::after {
-    width: 100%; /* Expand the line to full width on hover */
-  }
-
-.logo {
-  width: 120px; /* Adjust the width as needed */
-  height: 80px; /* Adjust the height as needed */
 }
 
+/* News, Flash, and Multimodal Section */
+.body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* News Section */
+.news {
+max-width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Brief News Section */
+.brief-news {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+}
+
+.brief-news h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.brief-news ul {
+    list-style: none;
+    padding: 0;
+}
+
+.brief-news ul li {
+    font-size: 14px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+    padding-bottom: 10px;
+}
+
+.brief-news ul li hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 10px 0;
+}
+
+/* Stock Market News Section */
+.stock-news {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stock-news h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Scrolling Stock Market Ticker */
+.ticker-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background: #333;
+    color: white;
+    padding: 10px 0;
+    border-radius: 8px;
+}
+
+.ticker {
+    display: flex;
+    animation: ticker-scroll 20s linear infinite;
+}
+
+.ticker-item {
+    white-space: nowrap;
+    padding: 0 20px;
+    font-size: 16px;
+}
+
+@keyframes ticker-scroll {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Flash News Section */
+.flash {
+    flex: 2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    height: 70vh;
+}
+
+/* Multimodal Login Box */
+.multiNodal {
+    border-top: 20px solid #ccc;
+    border-bottom: 20px solid #ccc;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 85%;
+    max-width: 400px;
+    font-family: 'Didact Gothic', sans-serif;
+    height: auto; /* Adjust the height as needed */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px; /* Add some space below the element */
+  }
+  
+  /* Ensures login container is the same height as news & flash */
+  .login-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    font-family: 'Didact Gothic', sans-serif;
+    height: 70vh; /* Adjust the height as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* Center form fields */
+    top: 20px; /* Adjust the distance from the top edge */
+  }
+
+
+/* Input Fields and Buttons */
+.row {
+    display: flex;
+    gap: 20px;
+    /* margin-bottom: 20px; */
+}
+
+.row.buttons {
+    margin-top: 20px; /* Add margin to push the buttons further down */
+  }
+
+.input-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-container label {
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.input-container input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.input-container button {
+    padding: 10px;
+    background-color: rgb(237, 92, 22);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.input-container button:hover {
+    background-color: rgb(240, 162, 17);
+    transform: scale(1.05);
+}
+
+/* Full-width Input */
+.full-width {
+    flex: 2;
+}
+
+.tinyText {
+    padding: 10px;
+    font-size: 10px;
+    color: #666;
+}
+
+/* Footer */
 .footer {
-    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
-    color: rgb(237, 92, 22); /* Change text color */
-    display: flex; /* Use Flexbox */
-    align-items: center; /* Center items vertically */
-    justify-content: space-between; /* Center items horizontally */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    color: rgb(237, 92, 22);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background: linear-gradient(to right, rgb(237, 92, 22), white, white, white, white, rgb(240, 162, 17));
     padding: 20px;
     text-align: center;
     color: white;
-    margin-top: auto; /* Push the footer to the bottom */
-  }
+    margin-top: auto;
+}
 
-  .footerContent {
+.footerContent {
     left: 100px;
     display: flex;
     align-items: center;
     gap: 20px;
-    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
-    color: rgb(237, 92, 22); /* Change text color */
-    font-size: 11px; /* Adjust the font size as needed */
-  }
+    color: rgb(237, 92, 22);
+}
+
+/* Social Media Icons */
+.followUs {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.followUs img {
+    width: 25px;
+    height: 25px;
+    transition: transform 0.3s ease;
+}
+
+.followUs img:hover {
+    transform: scale(1.2);
+}
+
+/* Search Bar */
+.search {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.search input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+/* Contact Us */
+.contactUs {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Language Options */
+.languageOptions select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Logo */
+.logo {
+    width: 120px;
+    height: 80px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .body {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .news, .flash, .multiNodal {
+        width: 90%;
+        height: auto;
+    }
+
+    .multiNodal {
+        justify-content: center;
+        margin-right: 0;
+    }
+}
