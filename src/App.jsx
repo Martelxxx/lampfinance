@@ -51,26 +51,11 @@ const quotes = [
   "Banking for a Borderless Economy"
 ];
 
-
 const App = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [currentQuote, setCurrentQuote] = useState(0);
-  // const [quoteBoxPosition, setQuoteBoxPosition] = useState({ top: '10%', left: '70%' });
+  const [activeSection, setActiveSection] = useState('home');
   const flashRef = useRef(null);
-
-  // // Function to set a random position in the top-right quadrant
-  // const setRandomPosition = () => {
-  //   if (flashRef.current) {
-  //     const flashWidth = flashRef.current.clientWidth;
-  //     const flashHeight = flashRef.current.clientHeight;
-
-  //     // Generate random positions within the top-right quadrant
-  //     const randomTop = Math.random() * (flashHeight / 2); // Top half
-  //     const randomLeft = (flashWidth / 2) + Math.random() * (flashWidth / 2); // Right half
-
-  //     setQuoteBoxPosition({ top: `${randomTop}px`, left: `${randomLeft}px` });
-  //   }
-  // };
 
   useEffect(() => {
     const imageInterval = setInterval(() => {
@@ -81,14 +66,15 @@ const App = () => {
       setCurrentQuote((prevQuote) => (prevQuote + 1) % quotes.length);
     }, 5000);
 
-    // const positionInterval = setInterval(setRandomPosition, 5000); // Change quote-box position every 5s
-
     return () => {
       clearInterval(imageInterval);
       clearInterval(quoteInterval);
-      // clearInterval(positionInterval);
     };
   }, []);
+
+  const handleSectionClick = (section) => {
+    setActiveSection(section);
+  };
 
   const briefNews = [
     "Breaking: Major breakthrough in AI research",
@@ -147,111 +133,187 @@ const App = () => {
 
       <div className='body'>
         <div className='news'>
-          {/* Brief News Section */}
-          <div className="brief-news">
-            <h2>Brief News</h2>
-            <ul>
-              {briefNews.map((news, index) => (
-                <li key={index}>{news}</li>
-              ))}
-            </ul>
-          </div>
+          {activeSection === 'home' && (
+            <>
+              {/* Brief News Section */}
+              <div className="brief-news">
+                <h2>Brief News</h2>
+                <ul>
+                  {briefNews.map((news, index) => (
+                    <li key={index}>{news}</li>
+                  ))}
+                </ul>
+              </div>
 
-          {/* Stock Market News Section */}
-          <div className="stock-news">
-    <h2>Stock Market News</h2>
-    <div className="ticker-container">
-        <div className="ticker">
-            {stockMarketNews.map((stock, index) => (
-                <div key={index} className="ticker-item">
-                    <strong>{stock.symbol}</strong>: {stock.price} ({stock.change})
+              {/* Stock Market News Section */}
+              <div className="stock-news">
+                <h2>Stock Market News</h2>
+                <div className="ticker-container">
+                  <div className="ticker" ref={stockTickerRef}>
+                    {stockMarketNews.map((stock, index) => (
+                      <div key={index} className="ticker-item">
+                        <strong>{stock.symbol}</strong>: {stock.price} ({stock.change})
+                      </div>
+                    ))}
+                  </div>
                 </div>
-            ))}
-        </div>
-    </div>
-</div>
+              </div>
+            </>
+          )}
+          {activeSection === 'about' && (
+            <div className="about-us-content">
+              <h2>About Us</h2>
+              <p>We are a leading financial institution dedicated to providing innovative solutions to our customers. Our mission is to empower individuals and businesses to achieve their financial goals through our comprehensive range of products and services.</p>
+            </div>
+          )}
+          {activeSection === 'services' && (
+            <div className="services-content">
+              <h2>Our Services</h2>
+              <p>We offer a wide range of financial services to meet the diverse needs of our customers, including personal banking, business banking, loans, and investment services.</p>
+            </div>
+          )}
+          {activeSection === 'agent' && (
+            <div className="agent-content">
+              <h2>Find An Agent</h2>
+              <p>Our network of agents is here to help you with all your financial needs. Use our agent locator to find an agent near you.</p>
+            </div>
+          )}
+          {activeSection === 'careers' && (
+            <div className="careers-content">
+              <h2>Careers</h2>
+              <p>Join our team and be a part of a dynamic and innovative financial institution. Explore our current job openings and apply today.</p>
+            </div>
+          )}
+          {activeSection === 'faqs' && (
+            <div className="faqs-content">
+              <h2>FAQs</h2>
+              <p>Have questions? We have answers. Browse our frequently asked questions to find the information you need.</p>
+            </div>
+          )}
+          {activeSection === 'contact' && (
+            <div className="contact-content">
+              <h2>Contact Us</h2>
+              <p>We are here to help. Get in touch with us through our contact form, phone, or email.</p>
+            </div>
+          )}
         </div>
 
         <div ref={flashRef} className='flash'>
-          <img src={images[currentImage]} alt="Carousel" className="carousel-image" />
-          <div className="quote-box">
-            {quotes[currentQuote]}
+          {activeSection === 'home' && (
+            <>
+              <img src={images[currentImage]} alt="Carousel" className="carousel-image" />
+              <div className="quote-box">
+                {quotes[currentQuote]}
+              </div>
+            </>
+          )}
+          {activeSection === 'about' && (
+            <div className="about-us-flash">
+              <h2>Our Vision</h2>
+              <p>To be the most trusted and respected financial institution, known for our commitment to customer satisfaction and innovation.</p>
+              <h2>Our Mission</h2>
+              <p>To provide exceptional financial services that meet the evolving needs of our customers, while fostering a culture of integrity, excellence, and social responsibility.</p>
+            </div>
+          )}
+          {activeSection === 'services' && (
+            <div className="services-flash">
+              <h2>Our Services</h2>
+              <p>We offer a wide range of financial services to meet the diverse needs of our customers, including personal banking, business banking, loans, and investment services.</p>
+            </div>
+          )}
+          {activeSection === 'agent' && (
+            <div className="agent-flash">
+              <h2>Find An Agent</h2>
+              <p>Our network of agents is here to help you with all your financial needs. Use our agent locator to find an agent near you.</p>
+            </div>
+          )}
+          {activeSection === 'careers' && (
+            <div className="careers-flash">
+              <h2>Careers</h2>
+              <p>Join our team and be a part of a dynamic and innovative financial institution. Explore our current job openings and apply today.</p>
+            </div>
+          )}
+          {activeSection === 'faqs' && (
+            <div className="faqs-flash">
+              <h2>FAQs</h2>
+              <p>Have questions? We have answers. Browse our frequently asked questions to find the information you need.</p>
+            </div>
+          )}
+          {activeSection === 'contact' && (
+            <div className="contact-flash">
+              <h2>Contact Us</h2>
+              <p>We are here to help. Get in touch with us through our contact form, phone, or email.</p>
+            </div>
+          )}
+        </div>
+
+        <div className="login-container">
+          <div>
+            <h2>New to Lamp Finance?</h2>
+            <p>Click "Register" to sign up today. It only takes a few minutes!</p>
+          </div>
+          <div className="multiNodal">
+            {/* Stacked Navigation Buttons */}
+            <div className="row stacked-buttons">
+              <button className="nav-button home" onClick={() => handleSectionClick('home')}>Home</button>
+              <button className="nav-button" onClick={() => handleSectionClick('about')}>About Us</button>
+              <button className="nav-button" onClick={() => handleSectionClick('services')}>Services</button>
+              <button className="nav-button" onClick={() => handleSectionClick('agent')}>Find An Agent</button>
+              <button className="nav-button" onClick={() => handleSectionClick('careers')}>Careers</button>
+              <button className="nav-button" onClick={() => handleSectionClick('faqs')}>FAQs</button>
+              <button className="nav-button" onClick={() => handleSectionClick('contact')}>Contact</button>
+            </div>
+
+            {/* Register & Login Side by Side */}
+            <div className="row action-buttons">
+              <button className="action-button" id="registerBtn">
+                Register
+              </button>
+              <button className="action-button" id="loginBtn">
+                Login
+              </button>
+            </div>
+
+            {/* Dynamic Form (Initially Hidden) */}
+            <div id="formContainer" className="hidden">
+              <div className="row">
+                <div className="input-container">
+                  <label htmlFor="username">Username</label>
+                  <input type="text" id="username" placeholder="Enter your Username" />
+                </div>
+                <div className="input-container">
+                  <label htmlFor="email">Email</label>
+                  <input type="email" id="email" placeholder="Enter your Email" />
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="input-container">
+                  <label htmlFor="pin">PIN</label>
+                  <input type="text" id="pin" placeholder="Enter your PIN" />
+                </div>
+                <div className="input-container">
+                  <label htmlFor="password">Password</label>
+                  <input type="password" id="password" placeholder="Enter your Password" />
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="input-container full-width">
+                  <label htmlFor="additional-info">Additional Info</label>
+                  <input type="text" id="additional-info" placeholder="Optional field" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer Disclaimer */}
+          <div className="tinyText">
+            By logging in, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.  
+            Your security is our priority. Unauthorized access is strictly prohibited.
           </div>
         </div>
-      {/* </div> */}
-
-       
-        <div className="login-container">
-  {/* User Prompt Section */}
-  <div>
-    <p>
-      <h2>New to Lamp Finance?</h2> Click "Register" to sign up today. It only takes a few minutes!
-    </p>
-  </div>
-
-  {/* MultiNodal Section */}
-  <div className="multiNodal">
-    {/* Stacked Navigation Buttons */}
-    <div className="row stacked-buttons">
-      <button className="nav-button home">Home</button>
-      <button className="nav-button">About Us</button>
-      <button className="nav-button">Services</button>
-      <button className="nav-button">Find An Agent</button>
-      <button className="nav-button">Careers</button>
-      <button className="nav-button">FAQs</button>
-      <button className="nav-button">Contact</button>
-    </div>
-
-    {/* Register & Login Side by Side */}
-    <div className="row action-buttons">
-      <button className="action-button" id="registerBtn" onClick={() => toggleForm('register')}>
-        Register
-      </button>
-      <button className="action-button" id="loginBtn" onClick={() => toggleForm('login')}>
-        Login
-      </button>
-    </div>
-
-    {/* Dynamic Form (Initially Hidden) */}
-    <div id="formContainer" className="hidden">
-      <div className="row">
-        <div className="input-container">
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" placeholder="Enter your Username" />
-        </div>
-        <div className="input-container">
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" placeholder="Enter your Email" />
-        </div>
       </div>
-
-      <div className="row">
-        <div className="input-container">
-          <label htmlFor="pin">PIN</label>
-          <input type="text" id="pin" placeholder="Enter your PIN" />
-        </div>
-        <div className="input-container">
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" placeholder="Enter your Password" />
-        </div>
-      </div>
-
-      <div className="row">
-        <div className="input-container full-width">
-          <label htmlFor="additional-info">Additional Info</label>
-          <input type="text" id="additional-info" placeholder="Optional field" />
-        </div>
-      </div>
-    </div>
-  </div>
-
-  {/* Footer Disclaimer */}
-  <div className="tinyText">
-    By logging in, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.  
-    Your security is our priority. Unauthorized access is strictly prohibited.
-  </div>
-</div>
-</div>
 
       <footer className="footer">
         <div className="followUs">

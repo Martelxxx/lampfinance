@@ -235,7 +235,7 @@ max-width: 400px;
     font-weight: 100;
     font-size: 40px;
     position: absolute;
-    background: rgba(255, 255, 255, 0.15); /* Light transparent white */
+    background: rgba(237, 92, 22, 0.25); /* Light transparent orange */
     backdrop-filter: blur(10px); /* Frosted glass effect */
     -webkit-backdrop-filter: blur(10px); /* Safari support */
     color: white;
