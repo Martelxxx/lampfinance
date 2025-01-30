@@ -84,7 +84,7 @@ h2 {
 .news {
 max-width: 400px;
     padding: 20px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: white;
     height: 70vh;
@@ -97,7 +97,7 @@ max-width: 400px;
 .brief-news {
     flex: 1;
     padding: 20px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     background-color: rgba(237, 92, 22, 0.05);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -130,7 +130,7 @@ max-width: 400px;
 .stock-news {
     flex: 1;
     padding: 20px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     background-color: rgba(237, 92, 22, 0.05);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -174,21 +174,107 @@ max-width: 400px;
 /* Flash News Section */
 .flash {
     flex: 2;
-    padding: 20px;
-    border-radius: 10px;
+    /* padding: 20px; */
+    /* border-radius: 10px; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: white;
-    height: 70vh;
-    background-image: url('/src/assets/globe.png');
-    background-size: contain; /* Ensure the image fits within the div */
-    background-position: center; /* Center the image */
+    height: 74vh;
+    /* background-size: contain; Ensure the image fits within the div */
+    /* background-position: center; Center the image */
     background-repeat: no-repeat; /* Prevent the image from repeating */
-}
-
-carousel-image {
+    position: relative;
+    overflow: hidden; /* Ensure the quote box stays within the .flash div */
+    z-index: 1; /* Ensure the quote box is above the image */
+  }
+  .carousel-image {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the entire div */
+    /* border-radius: 10px; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 1.5s ease; /* Smooth transition for opacity */
+    animation: parallax 10s infinite; /* Add parallax animation */
+  }
+
+  @keyframes parallax {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .carousel-image.fade-enter {
+    opacity: 0;
+  }
+  
+  .carousel-image.fade-enter-active {
+    opacity: 1;
+  }
+  
+  .carousel-image.fade-exit {
+    opacity: 1;
+  }
+  
+  .carousel-image.fade-exit-active {
+    opacity: 0;
+  }
+  
+  .carousel-image:hover {
+    transform: perspective(1000px) rotateY(10deg) rotateX(10deg) scale(1.05); /* 3D effect */
+  }
+
+  .quote-box {
+    font-family: 'lexend giga', sans-serif;
+    font-weight: 100;
+    font-size: 40px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.15); /* Light transparent white */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    color: white;
+    padding: 20px 30px;
+    /* border-radius: 15px; */
+    text-align: center;
+    border: 10px double rgba(255, 255, 255, 0.2); /* Subtle white border */
+    top: 70%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.6), 
+                0 0 30px rgba(255, 102, 0, 0.4), 
+                0 0 45px rgba(255, 102, 0, 0.3); 
+    /* animation: glowEffect 2.5s infinite alternate; */
+    /* animation: fadeInOut 5s linear infinite; */
+    word-wrap: break-word; /* Ensure words wrap */
+    /* word-break: break-word; Ensure words break */
+  }
+
+/* Keyframes for Pulsating Glow */
+@keyframes glowEffect {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 102, 0, 0.4), 
+                    0 0 20px rgba(255, 102, 0, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 102, 0, 0.8), 
+                    0 0 40px rgba(255, 102, 0, 0.6), 
+                    0 0 60px rgba(255, 102, 0, 0.5);
+    }
+}
+  
+  @keyframes fadeInOut {
+    0%, 100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
   }
 
 /* Multimodal Login Box */
@@ -201,7 +287,7 @@ carousel-image {
     align-items: center;
     background-color: white;
     padding: 40px 30px;
-    border-radius: 12px;
+    border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 85%;
     max-width: 400px;
@@ -216,7 +302,7 @@ carousel-image {
   .login-container {
     background-color: white;
     padding: 20px;
-    border-radius: 12px;
+    /* border-radius: 12px; */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
@@ -476,7 +562,7 @@ carousel-image {
     padding: 15px 20px;
     font-size: 16px;
     border: none;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     cursor: pointer;
     transition: 0.3s;
     display: flex;

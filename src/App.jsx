@@ -1,10 +1,4 @@
-import { useEffect, useRef } from 'react';
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { useEffect, useRef, useState } from 'react';
 import logo from './assets/logo.png';
 import instagram from './assets/instagram.png';
 import twitter from './assets/twitter.png';
@@ -12,24 +6,89 @@ import facebook from './assets/facebook.png';
 import linkedin from './assets/linkedin.png';
 import youtube from './assets/youtube.png';
 import tiktok from './assets/tiktok.png';
-import home from './assets/home.png';
+import img1 from './assets/1.png';
+import img2 from './assets/2.png';
+import img3 from './assets/3.png';
+import img4 from './assets/4.png';
+import img5 from './assets/5.png';
+import img6 from './assets/6.png';
+import img7 from './assets/7.png';
+import img8 from './assets/8.png';
+import img9 from './assets/9.png';
+import img11 from './assets/11.png';
+import img12 from './assets/12.png';
 import './App.css';
 
-  const images = [
-      './assets/1.png',
-      './assets/2.png',
-      './assets/3.png',
-      './assets/4.png',
-      './assets/5.png',
-      './assets/6.png',
-      './assets/7.png',
-      './assets/8.png',
-      './assets/9.png',
-      './assets/11.png',
-      './assets/12.png',
-  ];
+const images = [
+  img1,
+  img2,
+  img3,
+  img4,
+  img5,
+  img6,
+  img7,
+  img8,
+  img9,
+  img11,
+  img12,
+];
+
+const quotes = [
+  "Empowering Dreams, One Account at a Time",
+  "Banking Where You Are, When You Need It",
+  "Your Business, Our Support",
+  "Community-Driven, Customer-Focused",
+  "More Than Banking—A Financial Movement",
+  "The Future of Finance is Here",
+  "Secure. Fast. Convenient.",
+  "Lighting the Way to Financial Growth",
+  "More Than a Bank—A Partner in Your Success",
+  "Your Money, Your Terms",
+  "Connecting Africa to Global Opportunities",
+  "A Future Without Borders",
+  "Local Impact, Global Vision",
+  "The World is Yours to Conquer",
+  "Banking for a Borderless Economy"
+];
+
 
 const App = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+  const [currentQuote, setCurrentQuote] = useState(0);
+  // const [quoteBoxPosition, setQuoteBoxPosition] = useState({ top: '10%', left: '70%' });
+  const flashRef = useRef(null);
+
+  // // Function to set a random position in the top-right quadrant
+  // const setRandomPosition = () => {
+  //   if (flashRef.current) {
+  //     const flashWidth = flashRef.current.clientWidth;
+  //     const flashHeight = flashRef.current.clientHeight;
+
+  //     // Generate random positions within the top-right quadrant
+  //     const randomTop = Math.random() * (flashHeight / 2); // Top half
+  //     const randomLeft = (flashWidth / 2) + Math.random() * (flashWidth / 2); // Right half
+
+  //     setQuoteBoxPosition({ top: `${randomTop}px`, left: `${randomLeft}px` });
+  //   }
+  // };
+
+  useEffect(() => {
+    const imageInterval = setInterval(() => {
+      setCurrentImage((prevImage) => (prevImage + 1) % images.length);
+    }, 5000);
+
+    const quoteInterval = setInterval(() => {
+      setCurrentQuote((prevQuote) => (prevQuote + 1) % quotes.length);
+    }, 5000);
+
+    // const positionInterval = setInterval(setRandomPosition, 5000); // Change quote-box position every 5s
+
+    return () => {
+      clearInterval(imageInterval);
+      clearInterval(quoteInterval);
+      // clearInterval(positionInterval);
+    };
+  }, []);
 
   const briefNews = [
     "Breaking: Major breakthrough in AI research",
@@ -63,16 +122,6 @@ const App = () => {
       list.innerHTML += list.innerHTML; // Duplicate content for seamless scrolling
     }
   }, []);
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-  };
 
   return (
     <>
@@ -123,10 +172,13 @@ const App = () => {
 </div>
         </div>
 
-        <div className='flash'>
-          Flash News!!!
-          {/* Add your body content here */}
+        <div ref={flashRef} className='flash'>
+          <img src={images[currentImage]} alt="Carousel" className="carousel-image" />
+          <div className="quote-box">
+            {quotes[currentQuote]}
+          </div>
         </div>
+      {/* </div> */}
 
        
         <div className="login-container">
