@@ -17,6 +17,7 @@ import img8 from './assets/8.png';
 import img9 from './assets/9.png';
 import img11 from './assets/11.png';
 import img12 from './assets/12.png';
+import contact from './assets/contact.png'
 import './App.css';
 
 const images = [
@@ -74,6 +75,11 @@ const App = () => {
 
   const handleSectionClick = (section) => {
     setActiveSection(section);
+    if (flashRef.current) {
+      flashRef.current.classList.remove('light-border');
+      void flashRef.current.offsetWidth; // Trigger reflow
+      flashRef.current.classList.add('light-border');
+    }
   };
 
   const briefNews = [
@@ -163,7 +169,7 @@ const App = () => {
           {activeSection === 'about' && (
             <div className="about-us-content">
               <h2>About Us</h2>
-              <p>We are a leading financial institution dedicated to providing innovative solutions to our customers. Our mission is to empower individuals and businesses to achieve their financial goals through our comprehensive range of products and services.</p>
+              <p>At Lamp Finance, we are redefining financial access across Africa, providing a seamless, secure, and convenient way for individuals and businesses to manage their money. Our mission is to empower communities by making financial services accessible, simple, and effective—whether you're saving, sending money, or growing your business.</p>
             </div>
           )}
           {activeSection === 'services' && (
@@ -191,9 +197,19 @@ const App = () => {
             </div>
           )}
           {activeSection === 'contact' && (
-            <div className="contact-content">
+            <div className="contact-content"
+            style={{
+              backgroundImage: `url(${contact})`,
+              backgroundSize: "auto 50%", // Increases height slightly
+              backgroundPosition: "center top 150px",
+              backgroundRepeat: "no-repeat", // Prevents repeating
+              height: "400px", // Adjust height as needed
+              
+              // opacity: 0.9,
+            }}>
               <h2>Contact Us</h2>
               <p>We are here to help. Get in touch with us through our contact form, phone, or email.</p>
+              
             </div>
           )}
         </div>
@@ -209,10 +225,39 @@ const App = () => {
           )}
           {activeSection === 'about' && (
             <div className="about-us-flash">
-              <h2>Our Vision</h2>
-              <p>To be the most trusted and respected financial institution, known for our commitment to customer satisfaction and innovation.</p>
-              <h2>Our Mission</h2>
-              <p>To provide exceptional financial services that meet the evolving needs of our customers, while fostering a culture of integrity, excellence, and social responsibility.</p>
+              <h2>Why Choose Lamp Finance?</h2>
+              <p>
+<h3>Financial Inclusion at Your Fingertips</h3>
+
+We believe that everyone deserves access to financial services, regardless of location or economic status. Our platform enables customers to open accounts, deposit funds, and manage their finances digitally, eliminating the barriers of traditional banking.
+
+<h3>Fast & Secure Digital Transactions</h3>
+
+With integrations like Wave and Orange Money, Lamp Finance offers an instant, secure, and hassle-free way to deposit money and conduct transactions. Whether you are opening a new account or making payments, you can trust that your funds are processed quickly and safely.
+
+<h3>No Hidden Fees, Transparent Banking</h3>
+
+We prioritize honesty and transparency. Our fees and services are straightforward, with no hidden costs or surprise deductions. You get to manage your money with complete confidence, knowing exactly what you're paying for.
+
+<h3>Easy Account Opening & Instant Deposits</h3>
+
+Opening an account with us is quick, simple, and digital. Whether you have an existing Wave or Orange Money wallet or prefer to use a partner agent, the process is seamless:
+
+For digital users: Instantly transfer your initial deposit from your mobile wallet.
+For cash users: Visit a partner agent to deposit money and start your account.
+Your account is credited in real-time, and you receive an instant confirmation via SMS or email.
+
+<h3>Reliable Support, Whenever You Need It</h3>
+
+We understand that financial matters require trust and reliability. Our dedicated customer support team is available 24/7 to assist with any inquiries, whether it’s account management, deposits, or technical assistance.
+
+<h2>Who We Serve</h2>
+We cater to individuals, small businesses, and entrepreneurs looking for a flexible and secure way to manage their money. Whether you are saving for the future, investing in your business, or simply looking for a trusted financial partner, Lamp Finance is here to support your journey.
+
+<h2>Our Commitment</h2>
+Lamp Finance is more than a financial institution—we are a partner in your growth. Our goal is to empower you with the tools, services, and security you need to take control of your financial future.
+
+Experience a better way to bank. Join Lamp Finance today.</p>
             </div>
           )}
           {activeSection === 'services' && (
@@ -240,10 +285,12 @@ const App = () => {
             </div>
           )}
           {activeSection === 'contact' && (
-            <div className="contact-flash">
-              <h2>Contact Us</h2>
-              <p>We are here to help. Get in touch with us through our contact form, phone, or email.</p>
-            </div>
+            <div
+            className="contact-flash"
+          >
+            <h2>Contact Us</h2>
+            <p>We are here to help. Get in touch with us through our contact form, phone, or email.</p>
+          </div>
           )}
         </div>
 
