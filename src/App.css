@@ -666,6 +666,21 @@ max-width: 400px;
   .about-us-navbar a:hover {
     color: rgb(240, 162, 17); /* Change color on hover */
   }
+
+  .why, .mission, .values, .team {
+    background: rgba(255, 255, 255, 0.5); /* Transparent white */
+    /* border-radius: 15px; Smooth rounded corners */
+    backdrop-filter: blur(10px); /* Blur effect for glass effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    /* border: 1px solid rgba(255, 255, 255, 0.3); Subtle white border */
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    /* padding: 20px; Spacing inside the div */
+    /* color: white; Text color */
+    /* max-width: 600px; Limit width for better readability */
+    text-align: center;
+    /* margin: 20px auto; Center in the container */
+}
+
   
   
   

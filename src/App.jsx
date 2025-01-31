@@ -239,11 +239,11 @@ const App = () => {
           {activeSection === 'about' && (
             <div className="about-us-flash"
             style={{
-              // backgroundImage: `url(${building})`,
+              backgroundImage: `url(${building})`,
               backgroundSize: "auto 100%", // Increases height slightly
               backgroundPosition: "center top 80px",
               backgroundRepeat: "no-repeat", // Prevents repeating
-              height: "650px", // Adjust height as needed
+              height: "665px", // Adjust height as needed
               
               // opacity: 0.1,
             }}>
@@ -256,7 +256,7 @@ const App = () => {
                 </ul>
               </nav>
               {activeSubSection === 'why' && (
-                <div>
+                <div className='why'>
                   <h2>Why Choose Lamp Finance?</h2>
                   <p>
                     <h3>Financial Inclusion at Your Fingertips</h3>
@@ -276,19 +276,19 @@ const App = () => {
                 </div>
               )}
               {activeSubSection === 'mission' && (
-                <div>
+                <div className='mission'>
                   <h2>Who We Serve</h2>
                   <p>We cater to individuals, small businesses, and entrepreneurs looking for a flexible and secure way to manage their money. Whether you are saving for the future, investing in your business, or simply looking for a trusted financial partner, Lamp Finance is here to support your journey.</p>
                 </div>
               )}
               {activeSubSection === 'values' && (
-                <div>
+                <div className='values'>
                   <h2>Our Commitment</h2>
                   <p>Lamp Finance is more than a financial institution—we are a partner in your growth. Our goal is to empower you with the tools, services, and security you need to take control of your financial future.</p>
                 </div>
               )}
               {activeSubSection === 'team' && (
-                <div>
+                <div className='team'>
                   <h2>Team</h2>
                   <p>Meet our dedicated team of professionals who are committed to providing exceptional financial services and support to our customers.</p>
                 </div>
