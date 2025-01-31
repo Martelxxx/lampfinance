@@ -681,6 +681,53 @@ max-width: 400px;
     /* margin: 20px auto; Center in the container */
 }
 
+.team-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .team-member {
+    cursor: pointer;
+    color: #ed5c16;
+    font-size: 18px;
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+  }
+  
+  .team-member:hover {
+    color: #f0a211;
+  }
+  
+  .news {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .team-image {
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  
+  .flash {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .team-info h3 {
+    color: #ed5c16;
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  
+  .team-info p {
+    font-size: 18px;
+    color: #333;
+  }
   
   
   

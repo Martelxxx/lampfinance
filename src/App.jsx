@@ -19,6 +19,7 @@ import img11 from './assets/11.png';
 import img12 from './assets/12.png';
 import contact from './assets/contact.png'
 import building from './assets/building.png'
+import home from './assets/home.png'
 import './App.css';
 
 const images = [
@@ -53,11 +54,25 @@ const quotes = [
   "Banking for a Borderless Economy"
 ];
 
+const teamMembers = [
+  { name: "Cashius Banknote", role: "Chief Executive Officer", img: img1 },
+  { name: "Penny Wise", role: "Chief Financial Officer", img: img2 },
+  { name: "Bill Chex", role: "Head of Accounting", img: img3 },
+  { name: "Goldie Coin", role: "Director of Investments", img: img4 },
+  { name: "Franklin Bucks", role: "Senior Loan Specialist", img: img5 },
+  { name: "Nickel Savings", role: "Customer Experience Manager", img: img6 },
+  { name: "Cheddar Stackz", role: "Head of Wealth Management", img: img7 },
+  { name: "April O’Pay", role: "Director of Payroll Solutions", img: img8 },
+  { name: "Betty Budget", role: "Personal Finance Advisor", img: img9 },
+  { name: "Dime O’Deposit", role: "Head of Digital Banking", img: img11 },
+];
+
 const App = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [currentQuote, setCurrentQuote] = useState(0);
   const [activeSection, setActiveSection] = useState('home');
   const [activeSubSection, setActiveSubSection] = useState('null');
+  const [selectedMember, setSelectedMember] = useState(null);
   const flashRef = useRef(null);
 
   useEffect(() => {
@@ -94,6 +109,9 @@ const App = () => {
     }
   };
 
+  const handleTeamMemberClick = (member) => {
+    setSelectedMember(member);
+  };
 
   const briefNews = [
     "Breaking: Major breakthrough in AI research",
@@ -239,8 +257,8 @@ const App = () => {
           {activeSection === 'about' && (
             <div className="about-us-flash"
             style={{
-              backgroundImage: `url(${building})`,
-              backgroundSize: "auto 100%", // Increases height slightly
+              backgroundImage: `url(${home})`,
+              backgroundSize: "auto 80%", // Increases height slightly
               backgroundPosition: "center top 80px",
               backgroundRepeat: "no-repeat", // Prevents repeating
               height: "665px", // Adjust height as needed
@@ -278,19 +296,80 @@ const App = () => {
               {activeSubSection === 'mission' && (
                 <div className='mission'>
                   <h2>Who We Serve</h2>
-                  <p>We cater to individuals, small businesses, and entrepreneurs looking for a flexible and secure way to manage their money. Whether you are saving for the future, investing in your business, or simply looking for a trusted financial partner, Lamp Finance is here to support your journey.</p>
+                  <p>At <strong>Lamp Finance</strong>, we understand that managing money isn't just about transactions—it's about security, growth, and achieving your dreams. Whether you're an individual saving for the future, a small business looking to expand, or an entrepreneur seeking a trusted financial partner, we are here to provide the support and flexibility you need. We are more than just a financial service; we are a partner in your success.</p>
+
+<p>We believe that banking should be easy, accessible, and tailored to your lifestyle. With our innovative digital solutions, you can manage your finances anytime, anywhere. Our seamless integration with <strong>Wave and Orange Money</strong> allows you to make instant deposits and secure transactions without the hassle of traditional banking. If you prefer in-person assistance, our extensive <strong>network of partner agents</strong> ensures that you always have a trusted expert nearby to help with deposits and financial services. Whether you're transferring funds from your digital wallet or visiting an agent for cash deposits, we make sure the process is smooth, secure, and efficient.</p>
+
+<p>From the moment you deposit your first <strong>CFA 20,000</strong>, you are welcomed into a financial ecosystem designed to empower you. We keep you informed with real-time notifications and ensure your account is verified and ready for use without unnecessary delays. Whether you're a market vendor investing in new inventory, a young professional building your savings, or a business owner expanding operations, our goal is to provide financial tools that help you thrive.</p>
+
+<p>At <strong>Lamp Finance</strong>, we are driven by values of <strong>trust, accessibility, and innovation</strong>. We know that financial freedom is about more than just numbers—it's about the confidence and security to pursue your ambitions. That’s why we strive to provide a seamless experience, combining technology with human-centered service to ensure you always feel supported.</p>
+
+<p>Your journey towards financial success starts today. Whether you're making your first deposit or planning for the future, <strong>Lamp Finance</strong> is here to walk with you every step of the way. Welcome to a new era of financial empowerment—where your money works for you, and your future is brighter than ever.</p>
+
+<p><em>“The digital financial services where you want them and when you want them.”</em></p>
+
+
+
+
                 </div>
               )}
               {activeSubSection === 'values' && (
                 <div className='values'>
-                  <h2>Our Commitment</h2>
-                  <p>Lamp Finance is more than a financial institution—we are a partner in your growth. Our goal is to empower you with the tools, services, and security you need to take control of your financial future.</p>
+                  <h2>Our Commitment</h2><p>At <strong>Lamp Finance</strong>, we believe that financial empowerment is the key to unlocking opportunities and building a brighter future. Our commitment is to provide you with the tools, knowledge, and support you need to take full control of your financial journey. We don’t just offer services—we build relationships, fostering a community where individuals, entrepreneurs, and small businesses can thrive with confidence.</p>
+
+<p>We are dedicated to making finance simple, accessible, and personalized. Your financial needs are unique, and we strive to offer solutions that adapt to your goals, whether you're saving for the future, growing a business, or securing your family's financial well-being. Through transparency, innovation, and an unwavering focus on your success, we ensure that managing your money is not just easy, but empowering. We take pride in offering a seamless and intuitive experience that allows you to focus on what truly matters—achieving your financial dreams.</p>
+
+<p>Trust is at the heart of everything we do. We understand that your financial well-being requires more than just convenience—it requires reliability and security. That’s why we are committed to providing a safe and dependable financial experience, where your aspirations are met with the support and resources you need to turn them into reality.</p>
+
+<p>Beyond financial services, we are committed to fostering long-term prosperity for the communities we serve. We believe that true financial growth happens when people are equipped with the right knowledge and opportunities. That’s why we continuously invest in financial education, community initiatives, and partnerships that drive lasting impact. When you succeed, we all succeed.</p>
+
+<p>At <strong>Lamp Finance</strong>, your growth is our mission. We are here to walk with you, to celebrate your achievements, and to provide unwavering support at every step. Whether you're taking your first steps towards financial independence or striving for new heights, we are honored to be part of your journey.</p>
+
+<p><em>“Because your future deserves a financial partner as committed as you are.”</em></p>
+
+
                 </div>
               )}
               {activeSubSection === 'team' && (
                 <div className='team'>
                   <h2>Team</h2>
-                  <p>Meet our dedicated team of professionals who are committed to providing exceptional financial services and support to our customers.</p>
+                  
+                  <p>Meet our dedicated team of professionals who are committed to providing exceptional financial services and support to our customers. With expertise in banking, investments, and customer service, our team works tirelessly to ensure that your financial needs are met with precision, efficiency, and a touch of humor. Whether you’re saving for the future, growing your business, or managing your daily expenses, we are here to make finance simple, accessible, and maybe even a little fun.</p>
+
+                  <ul className="team-list">
+        {teamMembers.map((member, index) => (
+          <li key={index} onClick={() => handleTeamMemberClick(member)} className="team-member">
+            <strong>{member.name}</strong> – {member.role}
+          </li>
+        ))}
+      </ul>
+
+      {/* .news div (Displays Image) */}
+      <div className="news">
+        {selectedMember ? (
+          <img src={selectedMember.img} alt={selectedMember.name} className="team-image" />
+        ) : (
+          <p>Select a team member to see their profile picture.</p>
+        )}
+      </div>
+
+      {/* .flash div (Displays Name & Role) */}
+      <div className="flash">
+        {selectedMember ? (
+          <div className="team-info">
+            <h3>{selectedMember.name}</h3>
+            <p>{selectedMember.role}</p>
+          </div>
+        ) : (
+          <p>Click on a team member to see their details.</p>
+        )}
+      </div>
+    
+
+<p>At <strong>Lamp Finance</strong>, we take your financial future seriously—while keeping the experience as engaging and accessible as possible. Our team is here to support you every step of the way, offering expert guidance, innovative solutions, and a commitment to helping you succeed.</p>
+
+
+
                 </div>
               )}
             </div>
