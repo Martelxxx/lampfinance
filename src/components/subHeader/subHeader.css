@@ -1,0 +1,53 @@
+/* ==========================
+   SubHeader Styling (SubHeader.css)
+   ========================== */
+
+   .subHeader {
+    font-family: 'Lexend Giga', sans-serif;
+    font-weight: 250;
+    background: linear-gradient(to right, white 25%, rgb(240, 162, 17) 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+}
+
+.subHeaderContent {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+.save, .invest, .borrow, .learn {
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.save:hover, 
+.invest:hover, 
+.borrow:hover, 
+.learn:hover {
+    color: rgb(237, 92, 22);
+    transform: scale(1.5);
+    transition: 1s;
+}
+
+/* Logo Styling */
+.logo {
+    width: 120px;
+    height: 80px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .subHeader {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .subHeaderContent {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

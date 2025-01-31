@@ -1,0 +1,57 @@
+/* ==========================
+   Body Layout Styling (Body.css)
+   ========================== */
+
+   .body-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
+/* News Section (Left) */
+.news {
+    flex: 1;
+    max-width: 400px;
+    height: 70vh;
+}
+
+/* Flash News Section (Center) */
+.flash {
+    flex: 1;
+    max-width: auto;
+    height: 70vh; /* Reduced */
+}
+
+/* Login & Registration (Right) */
+.login-container {
+    flex: 1;
+    max-width: 400px;
+    height: 70vh;
+}
+
+/* Ensure FlashNews doesn't stretch */
+.flash-news {
+    width: 100%;
+    max-width: auto; /* Reduce size */
+    height: 70vh;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .body-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .news,
+    .flash,
+    .login-container {
+        width: 90%;
+        max-width: 90%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+}

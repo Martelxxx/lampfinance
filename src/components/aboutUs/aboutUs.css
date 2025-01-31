@@ -1,0 +1,77 @@
+/* ==========================
+   About Us Styling (AboutUs.css)
+   ========================== */
+
+   .about-us-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.about-us-flash {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+}
+
+/* Navbar */
+.about-us-navbar {
+    background-color: white;
+    border-bottom: 1px solid rgb(237, 92, 22);
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.about-us-navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.about-us-navbar li {
+    margin: 0 10px;
+}
+
+.about-us-navbar a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.about-us-navbar a:hover {
+    color: rgb(240, 162, 17);
+}
+
+/* Content Sections */
+.about-us-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.about-us-content h2 {
+    color: rgb(237, 92, 22);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .about-us-navbar ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-us-content {
+        width: 90%;
+    }
+}

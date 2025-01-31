@@ -1,0 +1,56 @@
+/* ==========================
+   Header Styling (Header.css)
+   ========================== */
+
+   .header {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    background: linear-gradient(to right, white 40%, rgb(237, 92, 22) 100%);
+    padding-left: 20px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.header ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 25px;
+}
+
+.header ul li {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.header ul li:not(:last-child)::after {
+    content: ' | ';
+    color: rgba(237, 92, 22, 0.5);
+}
+
+.header ul li:hover {
+    color: rgb(240, 162, 17);
+    transform: scale(1.2);
+}
+
+/* Active Section Highlight */
+.header ul .active {
+    font-weight: bold;
+    color: rgb(237, 92, 22);
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        font-size: 10px;
+        padding-left: 10px;
+    }
+    
+    .header ul {
+        gap: 15px;
+    }
+}

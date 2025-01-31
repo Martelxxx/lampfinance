@@ -1,0 +1,46 @@
+/* ==========================
+   Stock Ticker Styling (StockTicker.css)
+   ========================== */
+
+   .stock-news {
+    flex: 1;
+    padding: 20px;
+    background-color: rgba(237, 92, 22, 0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stock-news h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Scrolling Stock Market Ticker */
+.ticker-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background: #333;
+    color: white;
+    padding: 10px 0;
+    border-radius: 8px;
+}
+
+.ticker {
+    display: flex;
+    animation: ticker-scroll 20s linear infinite;
+}
+
+.ticker-item {
+    white-space: nowrap;
+    padding: 0 20px;
+    font-size: 16px;
+}
+
+@keyframes ticker-scroll {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}

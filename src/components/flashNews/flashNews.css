@@ -1,0 +1,97 @@
+/* ==========================
+   Flash News Styling (FlashNews.css)
+   ========================== */
+
+   .flash-news {
+    flex: 2;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 70vh;
+    border-width: 1px 1px 1px 1px;
+    border-style: solid;
+    border-image: linear-gradient(to right, rgb(240, 162, 17), white) 1;
+    animation: lightBorder 10s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Border Animation */
+@keyframes lightBorder {
+    0% {
+        border-image: linear-gradient(to right, rgb(240, 162, 17), white) 1;
+    }
+    25% {
+        border-image: linear-gradient(to bottom, rgb(240, 162, 17), white) 1;
+    }
+    50% {
+        border-image: linear-gradient(to left, rgb(240, 162, 17), white) 1;
+    }
+    75% {
+        border-image: linear-gradient(to top, rgb(240, 162, 17), white) 1;
+    }
+    100% {
+        border-image: linear-gradient(to right, rgb(240, 162, 17), white) 1;
+    }
+}
+
+/* Image Carousel */
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 1.5s ease;
+    animation: parallax 10s infinite;
+}
+
+/* Parallax Effect */
+@keyframes parallax {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Quote Box */
+.quote-box {
+    font-family: 'Lexend Giga', sans-serif;
+    font-weight: 100;
+    font-size: 40px;
+    position: absolute;
+    background: rgba(237, 92, 22, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    padding: 20px 30px;
+    text-align: center;
+    border: 10px double rgba(255, 255, 255, 0.2);
+    top: 70%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.6), 
+                0 0 30px rgba(255, 102, 0, 0.4), 
+                0 0 45px rgba(255, 102, 0, 0.3);
+    word-wrap: break-word;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .flash-news {
+        width: 90%;
+        height: auto;
+    }
+
+    .quote-box {
+        font-size: 24px;
+        left: 50%;
+        top: 85%;
+    }
+}

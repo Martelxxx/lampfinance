@@ -55,17 +55,68 @@ const quotes = [
 ];
 
 const teamMembers = [
-  { name: "Cashius Banknote", role: "Chief Executive Officer", img: img1 },
-  { name: "Penny Wise", role: "Chief Financial Officer", img: img2 },
-  { name: "Bill Chex", role: "Head of Accounting", img: img3 },
-  { name: "Goldie Coin", role: "Director of Investments", img: img4 },
-  { name: "Franklin Bucks", role: "Senior Loan Specialist", img: img5 },
-  { name: "Nickel Savings", role: "Customer Experience Manager", img: img6 },
-  { name: "Cheddar Stackz", role: "Head of Wealth Management", img: img7 },
-  { name: "April O’Pay", role: "Director of Payroll Solutions", img: img8 },
-  { name: "Betty Budget", role: "Personal Finance Advisor", img: img9 },
-  { name: "Dime O’Deposit", role: "Head of Digital Banking", img: img11 },
+  {
+    name: "Cashius Banknote",
+    role: "Chief Executive Officer",
+    img: img1,
+    bio: "Cashius leads our financial strategy with over 20 years of experience in global banking. His vision drives innovation and financial inclusion across our markets."
+  },
+  {
+    name: "Penny Wise",
+    role: "Chief Financial Officer",
+    img: img2,
+    bio: "Penny ensures our financial health and growth through strategic planning, risk management, and financial forecasting to maintain stability and profitability."
+  },
+  {
+    name: "Bill Chex",
+    role: "Head of Accounting",
+    img: img3,
+    bio: "Bill is responsible for managing financial records, ensuring compliance, and optimizing financial processes to keep our operations running smoothly."
+  },
+  {
+    name: "Goldie Coin",
+    role: "Director of Investments",
+    img: img4,
+    bio: "Goldie oversees our investment strategies, identifying high-potential opportunities and maximizing returns for our clients and stakeholders."
+  },
+  {
+    name: "Franklin Bucks",
+    role: "Senior Loan Specialist",
+    img: img5,
+    bio: "Franklin specializes in loan structuring and approval, helping individuals and businesses access the financial resources they need to grow and succeed."
+  },
+  {
+    name: "Nickel Savings",
+    role: "Customer Experience Manager",
+    img: img6,
+    bio: "Nickel ensures a seamless and exceptional customer experience by optimizing support channels and enhancing user interactions."
+  },
+  {
+    name: "Cheddar Stackz",
+    role: "Head of Wealth Management",
+    img: img7,
+    bio: "Cheddar provides expert financial planning and wealth management solutions, helping clients build and secure their financial future."
+  },
+  {
+    name: "April O’Pay",
+    role: "Director of Payroll Solutions",
+    img: img8,
+    bio: "April leads our payroll services, ensuring accurate and timely salary disbursements while integrating advanced payroll management solutions."
+  },
+  {
+    name: "Betty Budget",
+    role: "Personal Finance Advisor",
+    img: img9,
+    bio: "Betty empowers individuals with personalized budgeting strategies, helping them make informed financial decisions and achieve their savings goals."
+  },
+  {
+    name: "Dime O’Deposit",
+    role: "Head of Digital Banking",
+    img: img11,
+    bio: "Dime drives our digital banking initiatives, leveraging technology to enhance accessibility and security for online and mobile banking services."
+  }
 ];
+
 
 const App = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -93,6 +144,9 @@ const App = () => {
   const handleSectionClick = (section) => {
     setActiveSection(section);
     setActiveSubSection('null');
+    setSelectedMember(null); // Reset selected team member when switching sections
+
+
     if (flashRef.current) {
       flashRef.current.classList.remove('light-border');
       void flashRef.current.offsetWidth; // Trigger reflow
@@ -102,6 +156,9 @@ const App = () => {
 
   const handleSubSectionClick = (subSection) => {
     setActiveSubSection(subSection);
+    setSelectedMember(null); // Reset selected team member when switching subsections
+
+
     if (flashRef.current) {
       flashRef.current.classList.remove('light-border');
       void flashRef.current.offsetWidth; // Trigger reflow
@@ -169,81 +226,91 @@ const App = () => {
       </div>
 
       <div className='body'>
-        <div className='news'>
-          {activeSection === 'home' && (
-            <>
-              {/* Brief News Section */}
-              <div className="brief-news">
-                <h2>Brief News</h2>
-                <ul>
-                  {briefNews.map((news, index) => (
-                    <li key={index}>{news}</li>
-                  ))}
-                </ul>
-              </div>
+      <div className='news'>
+  {selectedMember ? (
+    <div className="team-news">
+      <h2>{selectedMember.name}</h2>
+      <p>{selectedMember.role}</p>
+      <img src={selectedMember.img} alt={selectedMember.name} className="team-image" />
+      <p className="team-bio">
+        {selectedMember.bio ? selectedMember.bio : "This team member plays a crucial role in our mission."}
+      </p>
+    </div>
+  ) : activeSection === 'home' ? (
+    <>
+      {/* Brief News Section */}
+      <div className="brief-news">
+        <h2>Brief News</h2>
+        <ul>
+          {briefNews.map((news, index) => (
+            <li key={index}>{news}</li>
+          ))}
+        </ul>
+      </div>
 
-              {/* Stock Market News Section */}
-              <div className="stock-news">
-                <h2>Stock Market News</h2>
-                <div className="ticker-container">
-                  <div className="ticker" ref={stockTickerRef}>
-                    {stockMarketNews.map((stock, index) => (
-                      <div key={index} className="ticker-item">
-                        <strong>{stock.symbol}</strong>: {stock.price} ({stock.change})
-                      </div>
-                    ))}
-                  </div>
-                </div>
+      {/* Stock Market News Section */}
+      <div className="stock-news">
+        <h2>Stock Market News</h2>
+        <div className="ticker-container">
+          <div className="ticker" ref={stockTickerRef}>
+            {stockMarketNews.map((stock, index) => (
+              <div key={index} className="ticker-item">
+                <strong>{stock.symbol}</strong>: {stock.price} ({stock.change})
               </div>
-            </>
-          )}
-          {activeSection === 'about' && (
-            <div className="about-us-content">
-              <h2>About Us</h2>
-              <p>At Lamp Finance, we are redefining financial access across Africa, providing a seamless, secure, and convenient way for individuals and businesses to manage their money. Our mission is to empower communities by making financial services accessible, simple, and effective—whether you're saving, sending money, or growing your business.</p>
-            </div>
-          )}
-          {activeSection === 'services' && (
-            <div className="services-content">
-              <h2>Our Services</h2>
-              <p>We offer a wide range of financial services to meet the diverse needs of our customers, including personal banking, business banking, loans, and investment services.</p>
-            </div>
-          )}
-          {activeSection === 'agent' && (
-            <div className="agent-content">
-              <h2>Find An Agent</h2>
-              <p>Our network of agents is here to help you with all your financial needs. Use our agent locator to find an agent near you.</p>
-            </div>
-          )}
-          {activeSection === 'careers' && (
-            <div className="careers-content">
-              <h2>Careers</h2>
-              <p>Join our team and be a part of a dynamic and innovative financial institution. Explore our current job openings and apply today.</p>
-            </div>
-          )}
-          {activeSection === 'faqs' && (
-            <div className="faqs-content">
-              <h2>FAQs</h2>
-              <p>Have questions? We have answers. Browse our frequently asked questions to find the information you need.</p>
-            </div>
-          )}
-          {activeSection === 'contact' && (
-            <div className="contact-content"
-            style={{
-              backgroundImage: `url(${contact})`,
-              backgroundSize: "auto 50%", // Increases height slightly
-              backgroundPosition: "center top 150px",
-              backgroundRepeat: "no-repeat", // Prevents repeating
-              height: "400px", // Adjust height as needed
-              
-              // opacity: 0.9,
-            }}>
-              <h2>Contact Us</h2>
-              <p>We are here to help. Get in touch with us through our contact form, phone, or email.</p>
-              
-            </div>
-          )}
+            ))}
+          </div>
         </div>
+      </div>
+    </>
+  ) : (
+    <>
+      {activeSection === 'about' && !selectedMember && (
+        <div className="about-us-content">
+          <h2>About Us</h2>
+          <p>At Lamp Finance, we are redefining financial access across Africa, providing a seamless, secure, and convenient way for individuals and businesses to manage their money. Our mission is to empower communities by making financial services accessible, simple, and effective—whether you're saving, sending money, or growing your business.</p>
+        </div>
+      )}
+      {activeSection === 'services' && !selectedMember && (
+        <div className="services-content">
+          <h2>Our Services</h2>
+          <p>We offer a wide range of financial services to meet the diverse needs of our customers, including personal banking, business banking, loans, and investment services.</p>
+        </div>
+      )}
+      {activeSection === 'agent' && !selectedMember && (
+        <div className="agent-content">
+          <h2>Find An Agent</h2>
+          <p>Our network of agents is here to help you with all your financial needs. Use our agent locator to find an agent near you.</p>
+        </div>
+      )}
+      {activeSection === 'careers' && !selectedMember && (
+        <div className="careers-content">
+          <h2>Careers</h2>
+          <p>Join our team and be a part of a dynamic and innovative financial institution. Explore our current job openings and apply today.</p>
+        </div>
+      )}
+      {activeSection === 'faqs' && !selectedMember && (
+        <div className="faqs-content">
+          <h2>FAQs</h2>
+          <p>Have questions? We have answers. Browse our frequently asked questions to find the information you need.</p>
+        </div>
+      )}
+      {activeSection === 'contact' && !selectedMember && (
+        <div className="contact-content"
+          style={{
+            backgroundImage: `url(${contact})`,
+            backgroundSize: "auto 50%", // Increases height slightly
+            backgroundPosition: "center top 150px",
+            backgroundRepeat: "no-repeat", // Prevents repeating
+            height: "400px", // Adjust height as needed
+          }}>
+          <h2>Contact Us</h2>
+          <p>We are here to help. Get in touch with us through our contact form, phone, or email.</p>
+        </div>
+      )}
+    </>
+  )}
+</div>
+
 
         <div ref={flashRef} className='flash'>
           {activeSection === 'home' && (
@@ -343,27 +410,6 @@ const App = () => {
           </li>
         ))}
       </ul>
-
-      {/* .news div (Displays Image) */}
-      <div className="news">
-        {selectedMember ? (
-          <img src={selectedMember.img} alt={selectedMember.name} className="team-image" />
-        ) : (
-          <p>Select a team member to see their profile picture.</p>
-        )}
-      </div>
-
-      {/* .flash div (Displays Name & Role) */}
-      <div className="flash">
-        {selectedMember ? (
-          <div className="team-info">
-            <h3>{selectedMember.name}</h3>
-            <p>{selectedMember.role}</p>
-          </div>
-        ) : (
-          <p>Click on a team member to see their details.</p>
-        )}
-      </div>
     
 
 <p>At <strong>Lamp Finance</strong>, we take your financial future seriously—while keeping the experience as engaging and accessible as possible. Our team is here to support you every step of the way, offering expert guidance, innovative solutions, and a commitment to helping you succeed.</p>

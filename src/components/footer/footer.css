@@ -1,0 +1,72 @@
+/* ==========================
+   Footer Styling (Footer.css)
+   ========================== */
+
+   .footer {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    color: rgb(237, 92, 22);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to right, white, white, white, rgba(237, 92, 22, 0.5), rgba(240, 162, 17, 0.75));
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+
+/* Social Media Icons */
+.followUs {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.followUs img {
+    width: 25px;
+    height: 25px;
+    transition: transform 0.3s ease;
+}
+
+.followUs img:hover {
+    transform: scale(1.2);
+}
+
+/* Footer Content */
+.footerContent {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: rgb(237, 92, 22);
+}
+
+.footerContent a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.footerContent a:hover {
+    text-decoration: underline;
+}
+
+/* Language Selector */
+.languageOptions select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footerContent {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

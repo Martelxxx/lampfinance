@@ -1,0 +1,80 @@
+/* ==========================
+   MultiNodal Styling (MultiNodal.css)
+   ========================== */
+
+   .multiNodal {
+    border-top: 20px solid rgba(244, 190, 88, 0.25);
+    border-bottom: 20px solid rgba(244, 190, 88, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    /* padding: 40px 30px; */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+/* Navigation Buttons */
+.stacked-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+}
+
+.nav-button {
+    font-family: 'Didact Gothic', sans-serif;
+    width: 95%;
+    height: 35px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    background: white;
+    transition: border 0.7s ease-in-out;
+}
+
+.nav-button.active {
+    font-weight: bold;
+    color: rgb(237, 92, 22);
+    text-decoration: underline;
+}
+
+/* Section Content */
+.section-content {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+/* Register & Login Buttons */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.action-button {
+    font-family: 'Didact Gothic', sans-serif;
+    width: 90%;
+    height: 50px;
+    font-size: 16px;
+    border: none;
+    background-color: #f0a211;
+    color: white;
+    cursor: pointer;
+}
+
+.action-button:hover {
+    background-color: #ed5c16;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .multiNodal {
+        width: 90%;
+    }
+}
