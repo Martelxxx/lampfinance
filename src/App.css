@@ -634,6 +634,38 @@ max-width: 400px;
   .action-button:hover {
     background-color: #ed5c16;
   }
+
+  /* Navbar inside the .flash div for the "About Us" section */
+.about-us-navbar {
+    background-color: white; /* Light background color */
+    border-bottom: 1px solid rgb(237, 92, 22); /* Bottom border */
+    border-image: linear-gradient(to right, rgb(240, 162, 17), white) 1;
+    padding: 10px 20px; /* Padding */
+    margin-bottom: 20px; /* Space below the navbar */
+  }
+  
+  .about-us-navbar ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    display: flex; /* Display list items in a row */
+    justify-content: space-around; /* Space items evenly */
+  }
+  
+  .about-us-navbar li {
+    margin: 0 10px; /* Space between items */
+  }
+  
+  .about-us-navbar a {
+    text-decoration: none; /* Remove underline from links */
+    color: #333; /* Text color */
+    font-weight: bold; /* Bold text */
+    transition: color 0.3s ease; /* Smooth transition for color */
+  }
+  
+  .about-us-navbar a:hover {
+    color: rgb(240, 162, 17); /* Change color on hover */
+  }
   
   
   

@@ -18,6 +18,7 @@ import img9 from './assets/9.png';
 import img11 from './assets/11.png';
 import img12 from './assets/12.png';
 import contact from './assets/contact.png'
+import building from './assets/building.png'
 import './App.css';
 
 const images = [
@@ -56,6 +57,7 @@ const App = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [currentQuote, setCurrentQuote] = useState(0);
   const [activeSection, setActiveSection] = useState('home');
+  const [activeSubSection, setActiveSubSection] = useState('null');
   const flashRef = useRef(null);
 
   useEffect(() => {
@@ -75,12 +77,23 @@ const App = () => {
 
   const handleSectionClick = (section) => {
     setActiveSection(section);
+    setActiveSubSection('null');
     if (flashRef.current) {
       flashRef.current.classList.remove('light-border');
       void flashRef.current.offsetWidth; // Trigger reflow
       flashRef.current.classList.add('light-border');
     }
   };
+
+  const handleSubSectionClick = (subSection) => {
+    setActiveSubSection(subSection);
+    if (flashRef.current) {
+      flashRef.current.classList.remove('light-border');
+      void flashRef.current.offsetWidth; // Trigger reflow
+      flashRef.current.classList.add('light-border');
+    }
+  };
+
 
   const briefNews = [
     "Breaking: Major breakthrough in AI research",
@@ -224,40 +237,62 @@ const App = () => {
             </>
           )}
           {activeSection === 'about' && (
-            <div className="about-us-flash">
-              <h2>Why Choose Lamp Finance?</h2>
-              <p>
-<h3>Financial Inclusion at Your Fingertips</h3>
-
-We believe that everyone deserves access to financial services, regardless of location or economic status. Our platform enables customers to open accounts, deposit funds, and manage their finances digitally, eliminating the barriers of traditional banking.
-
-<h3>Fast & Secure Digital Transactions</h3>
-
-With integrations like Wave and Orange Money, Lamp Finance offers an instant, secure, and hassle-free way to deposit money and conduct transactions. Whether you are opening a new account or making payments, you can trust that your funds are processed quickly and safely.
-
-<h3>No Hidden Fees, Transparent Banking</h3>
-
-We prioritize honesty and transparency. Our fees and services are straightforward, with no hidden costs or surprise deductions. You get to manage your money with complete confidence, knowing exactly what you're paying for.
-
-<h3>Easy Account Opening & Instant Deposits</h3>
-
-Opening an account with us is quick, simple, and digital. Whether you have an existing Wave or Orange Money wallet or prefer to use a partner agent, the process is seamless:
-
-For digital users: Instantly transfer your initial deposit from your mobile wallet.
-For cash users: Visit a partner agent to deposit money and start your account.
-Your account is credited in real-time, and you receive an instant confirmation via SMS or email.
-
-<h3>Reliable Support, Whenever You Need It</h3>
-
-We understand that financial matters require trust and reliability. Our dedicated customer support team is available 24/7 to assist with any inquiries, whether it’s account management, deposits, or technical assistance.
-
-<h2>Who We Serve</h2>
-We cater to individuals, small businesses, and entrepreneurs looking for a flexible and secure way to manage their money. Whether you are saving for the future, investing in your business, or simply looking for a trusted financial partner, Lamp Finance is here to support your journey.
-
-<h2>Our Commitment</h2>
-Lamp Finance is more than a financial institution—we are a partner in your growth. Our goal is to empower you with the tools, services, and security you need to take control of your financial future.
-
-Experience a better way to bank. Join Lamp Finance today.</p>
+            <div className="about-us-flash"
+            style={{
+              // backgroundImage: `url(${building})`,
+              backgroundSize: "auto 100%", // Increases height slightly
+              backgroundPosition: "center top 80px",
+              backgroundRepeat: "no-repeat", // Prevents repeating
+              height: "650px", // Adjust height as needed
+              
+              // opacity: 0.1,
+            }}>
+              <nav className="about-us-navbar">
+                <ul>
+                  <li><a href="#why" onClick={() => handleSubSectionClick('why')}>Why Choose Lamp Finance?</a></li>
+                  <li><a href="#mission" onClick={() => handleSubSectionClick('mission')}>Who We Serve</a></li>
+                  <li><a href="#values" onClick={() => handleSubSectionClick('values')}>Our Commitment</a></li>
+                  <li><a href="#team" onClick={() => handleSubSectionClick('team')}>Team</a></li>
+                </ul>
+              </nav>
+              {activeSubSection === 'why' && (
+                <div>
+                  <h2>Why Choose Lamp Finance?</h2>
+                  <p>
+                    <h3>Financial Inclusion at Your Fingertips</h3>
+                    We believe that everyone deserves access to financial services, regardless of location or economic status. Our platform enables customers to open accounts, deposit funds, and manage their finances digitally, eliminating the barriers of traditional banking.
+                    <h3>Fast & Secure Digital Transactions</h3>
+                    With integrations like Wave and Orange Money, Lamp Finance offers an instant, secure, and hassle-free way to deposit money and conduct transactions. Whether you are opening a new account or making payments, you can trust that your funds are processed quickly and safely.
+                    <h3>No Hidden Fees, Transparent Banking</h3>
+                    We prioritize honesty and transparency. Our fees and services are straightforward, with no hidden costs or surprise deductions. You get to manage your money with complete confidence, knowing exactly what you're paying for.
+                    <h3>Easy Account Opening & Instant Deposits</h3>
+                    Opening an account with us is quick, simple, and digital. Whether you have an existing Wave or Orange Money wallet or prefer to use a partner agent, the process is seamless:
+                    For digital users: Instantly transfer your initial deposit from your mobile wallet.
+                    For cash users: Visit a partner agent to deposit money and start your account.
+                    Your account is credited in real-time, and you receive an instant confirmation via SMS or email.
+                    <h3>Reliable Support, Whenever You Need It</h3>
+                    We understand that financial matters require trust and reliability. Our dedicated customer support team is available 24/7 to assist with any inquiries, whether it’s account management, deposits, or technical assistance.
+                  </p>
+                </div>
+              )}
+              {activeSubSection === 'mission' && (
+                <div>
+                  <h2>Who We Serve</h2>
+                  <p>We cater to individuals, small businesses, and entrepreneurs looking for a flexible and secure way to manage their money. Whether you are saving for the future, investing in your business, or simply looking for a trusted financial partner, Lamp Finance is here to support your journey.</p>
+                </div>
+              )}
+              {activeSubSection === 'values' && (
+                <div>
+                  <h2>Our Commitment</h2>
+                  <p>Lamp Finance is more than a financial institution—we are a partner in your growth. Our goal is to empower you with the tools, services, and security you need to take control of your financial future.</p>
+                </div>
+              )}
+              {activeSubSection === 'team' && (
+                <div>
+                  <h2>Team</h2>
+                  <p>Meet our dedicated team of professionals who are committed to providing exceptional financial services and support to our customers.</p>
+                </div>
+              )}
             </div>
           )}
           {activeSection === 'services' && (
