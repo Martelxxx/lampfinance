@@ -7,6 +7,7 @@ html, body {
     display: flex;
     flex-direction: column;
     background-color: white; /* Light background for better contrast */
+    overflow: hidden; 
 }
 
 /* Main container to take up remaining space */
@@ -209,7 +210,7 @@ max-width: 400px;
     /* border-radius: 10px; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: white;
-    height: 70vh;
+    height: 71vh;
     padding: 20px;
     /* background-size: contain; Ensure the image fits within the div */
     /* background-position: center; Center the image */
@@ -668,7 +669,7 @@ max-width: 400px;
   }
 
   .why, .mission, .values, .team {
-    background: rgba(255, 255, 255, 0.5); /* Transparent white */
+    background: rgba(255, 255, 255, 0.8); /* Transparent white */
     /* border-radius: 15px; Smooth rounded corners */
     backdrop-filter: blur(10px); /* Blur effect for glass effect */
     -webkit-backdrop-filter: blur(10px); /* Safari support */
@@ -729,6 +730,155 @@ max-width: 400px;
     color: #333;
   }
   
+  /* Modern Glassmorphism Styling for Registration Form */
+.register-form {
+    background: rgba(255, 255, 255, 0.1); /* Light transparent white */
+    backdrop-filter: blur(12px); /* Frosted glass effect */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    width: 300px;
+    margin: 20px auto;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+    font-family: 'Didact Gothic', sans-serif; /* Consistent font */
+  }
   
+  /* Form Title */
+  .register-form h2 {
+    font-size: 24px;
+    color: #333; /* Dark text color for better contrast */
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
   
+  /* Input Fields */
+  .register-form .input-container {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .register-form label {
+    font-size: 14px;
+    color: #333; /* Dark text color for better contrast */
+    font-weight: 500;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .register-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.2); /* Darker border for better contrast */
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333; /* Dark text color for better contrast */
+    background: rgba(255, 255, 255, 0.15);
+    transition: 0.3s;
+  }
+  
+  .register-form input::placeholder {
+    color: rgba(0, 0, 0, 0.5); /* Darker placeholder text for better contrast */
+  }
+  
+  .register-form input:focus {
+    border-color: #f0a211; /* Brand yellow */
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+  }
+  
+  /* Buttons Container */
+  .register-form .buttons-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  /* Buttons */
+  .register-form .submit-button,
+  .register-form .cancel-button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .submit-button, .cancel-button {
+    font-family: 'Didact Gothic', sans-serif;
+    color: white;
+    padding: 12px;
+    background: #f0a211; /* Brand yellow */
+    /* color: #191919; Brand black */
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .submit-button:hover {
+        background: #ed5c16; /* Brand orange */
+    }
+
+    .cancel-button:hover {
+        background: #ed5c16; /* Brand orange */
+    }
+  
+  .register-form .submit-button {
+    background: #f0a211; /* Brand yellow */
+    color: #191919; /* Brand black */
+  }
+  
+  .register-form .submit-button:hover {
+    background: #ed5c16; /* Brand orange */
+  }
+  
+  .register-form .cancel-button {
+    background: rgba(255, 255, 255, 0.2);
+    color: #333; /* Dark text color for better contrast */
+  }
+  
+  .register-form .cancel-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .submit-button2, .cancel-button2 {
+    font-family: 'Didact Gothic', sans-serif;
+    background: #f0a211; /* Brand yellow */
+    color: white; /* Brand black */
+    border: none;
+    /* border-radius: 8px; */
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+    .submit-button2:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: #ed5c16; /* Brand orange */
+
+    }
+
+    .cancel-button2:hover {
+        background: #ed5c16; /* Brand orange */
+
+    }
+
   

@@ -19,6 +19,16 @@ import img11 from './assets/11.png';
 import img12 from './assets/12.png';
 import contact from './assets/contact.png'
 import building from './assets/building.png'
+import ceo from './assets/ceo.png'
+import cfo from './assets/cfo.png'
+import emp1 from './assets/emp1.png'
+import emp2 from './assets/emp2.png'
+import emp3 from './assets/emp3.png'
+import emp4 from './assets/emp4.png'
+import emp5 from './assets/emp5.png'
+import emp6 from './assets/emp6.png'
+import emp7 from './assets/emp7.png'
+import emp8 from './assets/emp8.png'
 import home from './assets/home.png'
 import './App.css';
 
@@ -58,61 +68,61 @@ const teamMembers = [
   {
     name: "Cashius Banknote",
     role: "Chief Executive Officer",
-    img: img1,
+    img: ceo,
     bio: "Cashius leads our financial strategy with over 20 years of experience in global banking. His vision drives innovation and financial inclusion across our markets."
   },
   {
     name: "Penny Wise",
     role: "Chief Financial Officer",
-    img: img2,
+    img: cfo,
     bio: "Penny ensures our financial health and growth through strategic planning, risk management, and financial forecasting to maintain stability and profitability."
   },
   {
     name: "Bill Chex",
     role: "Head of Accounting",
-    img: img3,
+    img: emp1,
     bio: "Bill is responsible for managing financial records, ensuring compliance, and optimizing financial processes to keep our operations running smoothly."
   },
   {
     name: "Goldie Coin",
     role: "Director of Investments",
-    img: img4,
+    img: emp2,
     bio: "Goldie oversees our investment strategies, identifying high-potential opportunities and maximizing returns for our clients and stakeholders."
   },
   {
     name: "Franklin Bucks",
     role: "Senior Loan Specialist",
-    img: img5,
+    img: emp3,
     bio: "Franklin specializes in loan structuring and approval, helping individuals and businesses access the financial resources they need to grow and succeed."
   },
   {
     name: "Nickel Savings",
     role: "Customer Experience Manager",
-    img: img6,
+    img: emp4,
     bio: "Nickel ensures a seamless and exceptional customer experience by optimizing support channels and enhancing user interactions."
   },
   {
     name: "Cheddar Stackz",
     role: "Head of Wealth Management",
-    img: img7,
+    img: emp5,
     bio: "Cheddar provides expert financial planning and wealth management solutions, helping clients build and secure their financial future."
   },
   {
     name: "April O’Pay",
     role: "Director of Payroll Solutions",
-    img: img8,
+    img: emp6,
     bio: "April leads our payroll services, ensuring accurate and timely salary disbursements while integrating advanced payroll management solutions."
   },
   {
     name: "Betty Budget",
     role: "Personal Finance Advisor",
-    img: img9,
+    img: emp7,
     bio: "Betty empowers individuals with personalized budgeting strategies, helping them make informed financial decisions and achieve their savings goals."
   },
   {
     name: "Dime O’Deposit",
     role: "Head of Digital Banking",
-    img: img11,
+    img: emp8,
     bio: "Dime drives our digital banking initiatives, leveraging technology to enhance accessibility and security for online and mobile banking services."
   }
 ];
@@ -124,6 +134,8 @@ const App = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [activeSubSection, setActiveSubSection] = useState('null');
   const [selectedMember, setSelectedMember] = useState(null);
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(false);
   const flashRef = useRef(null);
 
   useEffect(() => {
@@ -168,6 +180,10 @@ const App = () => {
 
   const handleTeamMemberClick = (member) => {
     setSelectedMember(member);
+  };
+
+  const handleRegisterClick = () => {
+    setShowRegisterForm(true);
   };
 
   const briefNews = [
@@ -414,6 +430,8 @@ const App = () => {
 
 <p>At <strong>Lamp Finance</strong>, we take your financial future seriously—while keeping the experience as engaging and accessible as possible. Our team is here to support you every step of the way, offering expert guidance, innovative solutions, and a commitment to helping you succeed.</p>
 
+<p>More than a Team; a Family.</p>
+
 
 
                 </div>
@@ -455,12 +473,14 @@ const App = () => {
         </div>
 
         <div className="login-container">
+      {!showRegisterForm && !showLoginForm ? (
+        <>
           <div>
             <h2>New to Lamp Finance?</h2>
             <p>Click "Register" to sign up today. It only takes a few minutes!</p>
           </div>
           <div className="multiNodal">
-            {/* Stacked Navigation Buttons */}
+            {/* Navigation Buttons */}
             <div className="row stacked-buttons">
               <button className="nav-button home" onClick={() => handleSectionClick('home')}>Home</button>
               <button className="nav-button" onClick={() => handleSectionClick('about')}>About Us</button>
@@ -471,15 +491,102 @@ const App = () => {
               <button className="nav-button" onClick={() => handleSectionClick('contact')}>Contact</button>
             </div>
 
-            {/* Register & Login Side by Side */}
+            {/* Register & Login Buttons */}
             <div className="row action-buttons">
-              <button className="action-button" id="registerBtn">
+              <button 
+                className="action-button" 
+                id="registerBtn" 
+                onClick={() => {
+                  setShowRegisterForm(true);
+                  setShowLoginForm(false);
+                }}
+              >
                 Register
               </button>
-              <button className="action-button" id="loginBtn">
+              <button 
+                className="action-button" 
+                id="loginBtn"
+                onClick={() => {
+                  setShowLoginForm(true);
+                  setShowRegisterForm(false);
+                }}
+              >
                 Login
               </button>
             </div>
+          </div>
+        </>
+      ) : showRegisterForm ? (
+        <div className="form-container">
+          <h2>Register</h2>
+          <form>
+            <div className="row">
+              <div className="input-container">
+                <label htmlFor="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your Username" />
+              </div>
+              <div className="input-container">
+                <label htmlFor="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your Email" />
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="input-container">
+                <label htmlFor="pin">PIN</label>
+                <input type="text" id="pin" placeholder="Enter your PIN" />
+              </div>
+              <div className="input-container">
+                <label htmlFor="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your Password" />
+              </div>
+            </div>
+
+            <div className="row buttons-container">
+              <button type="submit" className="submit-button">Submit</button>
+              <button 
+                type="button" 
+                className="cancel-button" 
+                onClick={() => setShowRegisterForm(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      ) : (
+        <div className="form-container">
+          <h2>Login</h2>
+          <form>
+            <div className="row">
+              <div className="input-container">
+                <label htmlFor="login-email">Email</label>
+                <input type="email" id="login-email" placeholder="Enter your Email" />
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="input-container">
+                <label htmlFor="login-password">Password</label>
+                <input type="password" id="login-password" placeholder="Enter your Password" />
+              </div>
+            </div>
+
+            <div className="row buttons-container">
+              <button type="submit" className="submit-button2">Login</button>
+              <button 
+                type="button" 
+                className="cancel-button2" 
+                onClick={() => setShowLoginForm(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+
+
 
             {/* Dynamic Form (Initially Hidden) */}
             <div id="formContainer" className="hidden">
@@ -512,7 +619,6 @@ const App = () => {
                 </div>
               </div>
             </div>
-          </div>
 
           {/* Footer Disclaimer */}
           <div className="tinyText">
@@ -520,7 +626,9 @@ const App = () => {
             Your security is our priority. Unauthorized access is strictly prohibited.
           </div>
         </div>
-      </div>
+        </div>
+
+      
 
       <footer className="footer">
         <div className="followUs">
