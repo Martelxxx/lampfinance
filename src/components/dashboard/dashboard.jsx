@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import logo from '../../assets/logo.png';
 import instagram from '../..//assets/instagram.png';
 import twitter from '../..//assets/twitter.png';
@@ -6,233 +6,224 @@ import facebook from '../..//assets/facebook.png';
 import linkedin from '../..//assets/linkedin.png';
 import youtube from '../..//assets/youtube.png';
 import tiktok from '../..//assets/tiktok.png';
-import img1 from '../..//assets/1.png';
-import img2 from '../..//assets/2.png';
-import img3 from '../..//assets/3.png';
-import img4 from '../..//assets/4.png';
-import img5 from '../..//assets/5.png';
-import img6 from '../..//assets/6.png';
-import img7 from '../..//assets/7.png';
-import img8 from '../..//assets/8.png';
-import img9 from '../..//assets/9.png';
-import img11 from '../..//assets/11.png';
-import img12 from '../.././assets/12.png';
-import contact from '../..//assets/contact.png'
-import building from '../..//assets/building.png'
-import ceo from '../..//assets/ceo.png'
-import cfo from '../..//assets/cfo.png'
-import emp1 from '../..//assets/emp1.png'
-import emp2 from '../..//assets/emp2.png'
-import emp3 from '../..//assets/emp3.png'
-import emp4 from '../..//assets/emp4.png'
-import emp5 from '../..//assets/emp5.png'
-import emp6 from '../..//assets/emp6.png'
-import emp7 from '../..//assets/emp7.png'
-import emp8 from '../..//assets/emp8.png'
-import home from '../..//assets/home.png'
 import './dashboard.css';
+import PropTypes from 'prop-types';
 
-const images = [
-  img1,
-  img2,
-  img3,
-  img4,
-  img5,
-  img6,
-  img7,
-  img8,
-  img9,
-  img11,
-  img12,
-];
+// Define category colors and list
+const categoryColors = {
+  "Food": "#ff6384",
+  "Bills": "#36a2eb",
+  "Entertainment": "#ffcd56",
+  "Transport": "#4bc0c0",
+  "Misc": "#9966ff"
+};
+const categories = ["Food", "Bills", "Entertainment", "Transport", "Misc"];
 
-const quotes = [
-  "Empowering Dreams, One Account at a Time",
-  "Banking Where You Are, When You Need It",
-  "Your Business, Our Support",
-  "Community-Driven, Customer-Focused",
-  "More Than Banking—A Financial Movement",
-  "The Future of Finance is Here",
-  "Secure. Fast. Convenient.",
-  "Lighting the Way to Financial Growth",
-  "More Than a Bank—A Partner in Your Success",
-  "Your Money, Your Terms",
-  "Connecting Africa to Global Opportunities",
-  "A Future Without Borders",
-  "Local Impact, Global Vision",
-  "The World is Yours to Conquer",
-  "Banking for a Borderless Economy"
-];
-
-const teamMembers = [
-  {
-    name: "Cashius Banknote",
-    role: "Chief Executive Officer",
-    img: ceo,
-    bio: "Cashius leads our financial strategy with over 20 years of experience in global banking. His vision drives innovation and financial inclusion across our markets. Cashius leads our financial strategy with over 20 years of experience in global banking. His vision drives innovation and financial inclusion across our markets. Cashius leads our financial strategy with over 20 years of experience in global banking. His vision drives innovation and financial inclusion across our markets. Cashius leads our financial strategy with over 20 years of experience in global banking. His vision drives innovation and financial inclusion across our markets."
-  },
-  {
-    name: "Penny Wise",
-    role: "Chief Financial Officer",
-    img: cfo,
-    bio: "Penny ensures our financial health and growth through strategic planning, risk management, and financial forecasting to maintain stability and profitability."
-  },
-  {
-    name: "Bill Chex",
-    role: "Head of Accounting",
-    img: emp1,
-    bio: "Bill is responsible for managing financial records, ensuring compliance, and optimizing financial processes to keep our operations running smoothly."
-  },
-  {
-    name: "Goldie Coin",
-    role: "Director of Investments",
-    img: emp2,
-    bio: "Goldie oversees our investment strategies, identifying high-potential opportunities and maximizing returns for our clients and stakeholders."
-  },
-  {
-    name: "Franklin Bucks",
-    role: "Senior Loan Specialist",
-    img: emp3,
-    bio: "Franklin specializes in loan structuring and approval, helping individuals and businesses access the financial resources they need to grow and succeed."
-  },
-  {
-    name: "Nickel Savings",
-    role: "Customer Experience Manager",
-    img: emp4,
-    bio: "Nickel ensures a seamless and exceptional customer experience by optimizing support channels and enhancing user interactions."
-  },
-  {
-    name: "Cheddar Stackz",
-    role: "Head of Wealth Management",
-    img: emp5,
-    bio: "Cheddar provides expert financial planning and wealth management solutions, helping clients build and secure their financial future."
-  },
-  {
-    name: "April O’Pay",
-    role: "Director of Payroll Solutions",
-    img: emp6,
-    bio: "April leads our payroll services, ensuring accurate and timely salary disbursements while integrating advanced payroll management solutions."
-  },
-  {
-    name: "Betty Budget",
-    role: "Personal Finance Advisor",
-    img: emp7,
-    bio: "Betty empowers individuals with personalized budgeting strategies, helping them make informed financial decisions and achieve their savings goals."
-  },
-  {
-    name: "Dime O’Deposit",
-    role: "Head of Digital Banking",
-    img: emp8,
-    bio: "Dime drives our digital banking initiatives, leveraging technology to enhance accessibility and security for online and mobile banking services."
+// Instead of random, assign categories in round-robin order
+const generateDummyTransactions = (service, count) => {
+  const transactions = [];
+  for (let i = 1; i <= count; i++) {
+    const day = (i % 28) + 1;
+    const dayStr = day < 10 ? `0${day}` : day;
+    transactions.push({
+      id: i,
+      description: `${service} Transaction ${i}`,
+      date: `2025-01-${dayStr}`,
+      amount: (i % 2 === 0 ? "+" : "-") + `$${(Math.floor(Math.random() * 100) + 1)}`,
+      category: categories[i % categories.length]
+    });
   }
-];
-  
-
-const Dashboard = () => {
-  const [currentImage, setCurrentImage] = useState(0);
-  const [currentQuote, setCurrentQuote] = useState(0);
-  const [activeSection, setActiveSection] = useState('home');
-  const [activeSubSection, setActiveSubSection] = useState('null');
-  const [selectedMember, setSelectedMember] = useState(null);
-  const [showRegisterForm, setShowRegisterForm] = useState(false);
-  const [showLoginForm, setShowLoginForm] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const flashRef = useRef(null);
-
-  
-  // Logout handler: redirects to the home page
-  const handleLogout = () => {
-    window.location.href = "/";
-  };
-
-  const handleSectionClick = (section) => {
-    setActiveSection(section);
-    setActiveSubSection('null');
-    setSelectedMember(null); // Reset selected team member when switching sections
-
-
-    if (flashRef.current) {
-      flashRef.current.classList.remove('light-border');
-      void flashRef.current.offsetWidth; // Trigger reflow
-      flashRef.current.classList.add('light-border');
-    }
-  };
-
-  const handleSubSectionClick = (subSection) => {
-    setActiveSubSection(subSection);
-    setSelectedMember(null); // Reset selected team member when switching subsections
-
-
-    if (flashRef.current) {
-      flashRef.current.classList.remove('light-border');
-      void flashRef.current.offsetWidth; // Trigger reflow
-      flashRef.current.classList.add('light-border');
-    }
-  };
-
-  const handleTeamMemberClick = (member) => {
-    setSelectedMember(member);
-  };
-
-  const handleRegisterClick = () => {
-    setShowRegisterForm(true);
-  };
-
-  const briefNews = [
-    "Breaking: Major breakthrough in AI research",
-    "Local elections results announced today",
-    "Global warming reaches critical levels, scientists warn",
-    "New electric car shatters distance records",
-    "Tech giant acquires startup in billion-dollar deal",
-    "Major airline announces new international routes",
-    "Sports update: National team wins championship",
-    "Healthcare innovation reduces surgery risks",
-    "Stock market sees record-high gains this week",
-    "AI-powered robots are now assisting in hospitals",
-  ];
-
-  const stockMarketNews = [
-    { symbol: "AAPL", name: "Apple Inc.", price: "$145.09", change: "+0.45%" },
-    { symbol: "TSLA", name: "Tesla Inc.", price: "$842.19", change: "-1.25%" },
-    { symbol: "AMZN", name: "Amazon.com Inc.", price: "$3,456.78", change: "+0.85%" },
-    { symbol: "GOOGL", name: "Alphabet Inc.", price: "$2,899.12", change: "-0.60%" },
-    { symbol: "MSFT", name: "Microsoft Corp.", price: "$299.35", change: "+0.30%" },
-    { symbol: "NVDA", name: "NVIDIA Corp.", price: "$480.20", change: "+1.75%" },
-    { symbol: "META", name: "Meta Platforms", price: "$370.60", change: "-0.20%" },
-    { symbol: "NFLX", name: "Netflix Inc.", price: "$430.12", change: "+0.95%" },
-  ];
-
-  const stockTickerRef = useRef(null);
-
-  useEffect(() => {
-    if (stockTickerRef.current) {
-      const list = stockTickerRef.current;
-      list.innerHTML += list.innerHTML; // Duplicate content for seamless scrolling
-    }
-  }, []);
-
-// Login form submission handler:
-const handleLoginSubmit = (e) => {
-  e.preventDefault();
-  const phone = loginPhoneRef.current.value;
-  const password = loginPasswordRef.current.value;
-
-  // Check against dummy credentials
-  if (phone === "12345678" && password === "password") {
-    setIsLoggedIn(true);
-  } else {
-    alert("Invalid credentials");
-  }
+  return transactions;
 };
 
-// If the user is logged in, render the Dashboard component:
-if (isLoggedIn) {
-  return <Dashboard />;
-}
+const generateDetailedTransactions = (service, count) => {
+  const transactions = [];
+  for (let i = 1; i <= count; i++) {
+    const day = (i % 28) + 1;
+    const dayStr = day < 10 ? `0${day}` : day;
+    const hour = Math.floor(Math.random() * 12) + 1;
+    const minute = Math.floor(Math.random() * 60);
+    const minuteStr = minute < 10 ? `0${minute}` : minute;
+    const period = Math.random() > 0.5 ? "AM" : "PM";
+    transactions.push({
+      id: i,
+      description: `${service} Detailed Transaction ${i}`,
+      date: `2025-02-${dayStr}`,
+      time: `${hour}:${minuteStr} ${period}`,
+      recipient: `${service} Recipient ${i}`,
+      amount: (i % 2 === 0 ? "+" : "-") + `$${(Math.floor(Math.random() * 500) + 50)}`,
+      fee: `$${Math.floor(Math.random() * 10)}`,
+      category: categories[i % categories.length]
+    });
+  }
+  return transactions;
+};
+
+// Generate 15 dummy transactions for mobile services
+const mobileTransactions = {
+  "Bank Transactions": generateDummyTransactions("Bank Transactions", 15),
+  "Orange Money": generateDummyTransactions("Orange Money", 15),
+  "Wave": generateDummyTransactions("Wave", 15)
+};
+
+// Generate 15 detailed transactions for multi-option views
+const multiOptionTransactions = {
+  "Transfers": generateDetailedTransactions("Transfers", 15),
+  "Brokerage": generateDetailedTransactions("Brokerage", 15),
+  "Payments": generateDetailedTransactions("Payments", 15),
+  "Loans": generateDetailedTransactions("Loans", 15),
+  "Investments": generateDetailedTransactions("Investments", 15)
+};
+
+// Adjusted total balances (dummy values)
+const totalBalances = {
+  "Bank Transactions": "$80",
+  "Orange Money": "$300",
+  "Wave": "$750",
+  "Brokerage": "$2500",
+  "Loans": "$90",
+  "Investments": "$4500"
+};
+
+// List of accounts for "Accounts at a Glance"
+const accountList = Object.keys(totalBalances);
+
+// MultiNodal options (including "Settings")
+const multiOptions = ["Transfers", "Brokerage", "Payments", "Loans", "Investments", "Settings"];
+
+// Dummy utility bills data
+const dummyBills = [
+  { id: 1, company: "Utility Company A", bill: "$75", due: "2025-02-15" },
+  { id: 2, company: "Telecom Company B", bill: "$50", due: "2025-02-20" }
+];
+
+// Helper: convert balance string to number
+const parseBalance = (balanceStr) => parseFloat(balanceStr.replace(/[$,]/g, ""));
+
+// --- Aggregate Transactions for Pie Charts ---
+const aggregateTransactions = () => {
+  const debitTotals = { Food: 0, Bills: 0, Entertainment: 0, Transport: 0, Misc: 0 };
+  const creditTotals = { Food: 0, Bills: 0, Entertainment: 0, Transport: 0, Misc: 0 };
+  accountList.forEach(account => {
+    const txs = mobileTransactions[account] || [];
+    txs.forEach(tx => {
+      const amt = parseFloat(tx.amount.replace(/[^0-9.]/g, ""));
+      const cat = tx.category;
+      if (tx.amount.startsWith("-")) {
+        debitTotals[cat] += amt;
+      } else {
+        creditTotals[cat] += amt;
+      }
+    });
+  });
+  return { debitTotals, creditTotals };
+};
+const { debitTotals, creditTotals } = aggregateTransactions();
+const totalDebits = Object.values(debitTotals).reduce((sum, v) => sum + v, 0);
+const totalCredits = Object.values(creditTotals).reduce((sum, v) => sum + v, 0);
+
+// PieChart Component
+const PieChart = ({ data }) => {
+  const radius = 16;
+  const circumference = 2 * Math.PI * radius;
+  const total = Object.values(data).reduce((sum, val) => sum + val, 0);
+  let offset = 0;
+  const slices = Object.entries(data).map(([category, value]) => {
+    const proportion = value / total;
+    const dash = proportion * circumference;
+    const slice = (
+      <circle
+        key={category}
+        r={radius}
+        cx="16"
+        cy="16"
+        fill="transparent"
+        stroke={categoryColors[category] || "#000"}
+        strokeWidth="32"
+        strokeDasharray={`${dash} ${circumference - dash}`}
+        transform={`rotate(${(offset / circumference) * 360 - 90} 16 16)`}
+      />
+    );
+    offset += dash;
+    return slice;
+  });
+  return (
+    <svg viewBox="0 0 32 32" className="pie-chart">
+      {slices}
+    </svg>
+  );
+};
+
+PieChart.propTypes = {
+  data: PropTypes.object.isRequired,
+};
+
+// Legend Component
+const Legend = ({ data }) => {
+  return (
+    <ul className="pie-legend">
+      {Object.entries(data).map(([category, value]) => (
+        <li key={category}>
+          <span className="legend-color" style={{ background: categoryColors[category] || "#000" }}></span>
+          {category}: ${value.toFixed(2)}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+Legend.propTypes = {
+  data: PropTypes.object.isRequired,
+};
+
+// Helper to get the most recent transaction for an account
+const getRecentTransaction = (account) => {
+  const txs = mobileTransactions[account] || [];
+  return txs.length ? txs[txs.length - 1] : null;
+};
+
+// Calculate grand total
+const grandTotal = accountList.reduce((acc, account) => acc + parseBalance(totalBalances[account]), 0);
+
+const Dashboard = () => {
+  // Flash view states
+  const [flashTab, setFlashTab] = useState("Accounts"); // "Accounts" or "BillPay"
+  const [selectedAccount, setSelectedAccount] = useState(null);
+  const [selectedMultiOption, setSelectedMultiOption] = useState(null);
+  const [emojiThresholds, setEmojiThresholds] = useState({ sad: 100, normal: 500 });
+
+  const handleAccountClick = (account) => setSelectedAccount(account);
+  const handleBackFromAccount = () => setSelectedAccount(null);
+  const handleFlashTabClick = (tab) => {
+    setFlashTab(tab);
+    if (tab === "Accounts") {
+      setSelectedAccount(null);
+      setSelectedMultiOption(null);
+    }
+  };
+  const handleMultiOptionClick = (option) => {
+    setSelectedMultiOption(option);
+    setSelectedAccount(null);
+    setFlashTab("Accounts");
+  };
+  const handleLogout = () => (window.location.href = "/");
+  const handleSettingsSave = (e) => {
+    e.preventDefault();
+    const sadVal = parseFloat(e.target.elements.thresholdSad.value);
+    const normalVal = parseFloat(e.target.elements.thresholdNormal.value);
+    setEmojiThresholds({ sad: sadVal, normal: normalVal });
+  };
+  const getEmojiForBalance = (balanceStr) => {
+    const balance = parseBalance(balanceStr);
+    if (balance < emojiThresholds.sad) return "😢";
+    else if (balance < emojiThresholds.normal) return "🙂";
+    else return "😁";
+  };
 
   return (
-    <>
-      <div className='header'>
+    <div className="dashboard-container">
+      {/* Header */}
+      <div className="header">
         <ul>
           <li>Consumer Microfinance</li>
           <li>Commercial Microfinance</li>
@@ -241,43 +232,207 @@ if (isLoggedIn) {
         </ul>
       </div>
 
-      <div className='subHeader'>
+      {/* SubHeader with logo */}
+      <div className="subHeader">
         <img src={logo} className="logo" alt="Company logo" />
         <div className="subHeaderContent">
           <div>I would like to...</div>
-          <div className='save'>Save</div>
-          <div className='invest'>Invest</div>
-          <div className='borrow'>Borrow</div>
-          <div className='learn'>Learn</div>
+          <div className="save">Save</div>
+          <div className="invest">Invest</div>
+          <div className="borrow">Borrow</div>
+          <div className="learn">Learn</div>
         </div>
       </div>
 
+      {/* Main Body */}
       <div className="body">
-        <div className="dashboard-left">dashboard-left</div>
-        <div className="flash" ref={flashRef}>flash</div>
-        <div className="login-container">
-          {!showRegisterForm && !showLoginForm ? (
+        {/* Left Panel: Accounts List + Grand Total */}
+        <div className="dashboard-left">
+          <h3>Financial Transactions</h3>
+          <ul>
+            {accountList.map((account) => (
+              <li key={account}>
+                <button className="dashboard-service-button" onClick={() => handleAccountClick(account)}>
+                  {account} <span className="balance-tag">{totalBalances[account]}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+          <div className="grand-total">
+            Grand Total: ${grandTotal.toLocaleString()}
+          </div>
+        </div>
+
+        {/* Flash Div */}
+        <div className="flash">
+          {selectedMultiOption ? (
+            <div className="multi-option-content">
+              <button className="dashboard-back-button" onClick={() => setSelectedMultiOption(null)}>
+                Back
+              </button>
+              {selectedMultiOption === "Settings" ? (
+                <>
+                  <h4>Settings</h4>
+                  <form onSubmit={handleSettingsSave} className="settings-form">
+                    <label>
+                      Threshold for Sad (under):
+                      <input type="number" name="thresholdSad" defaultValue={emojiThresholds.sad} />
+                    </label>
+                    <label>
+                      Threshold for Normal (under):
+                      <input type="number" name="thresholdNormal" defaultValue={emojiThresholds.normal} />
+                    </label>
+                    <button type="submit" className="dashboard-action-button">
+                      Save
+                    </button>
+                  </form>
+                </>
+              ) : (
+                <>
+                  <h4>{selectedMultiOption} Details</h4>
+                  {totalBalances[selectedMultiOption] && (
+                    <div className="balance">
+                      Total Balance: {totalBalances[selectedMultiOption]}
+                    </div>
+                  )}
+                  <ul className="detailed-transaction-list">
+                    {multiOptionTransactions[selectedMultiOption].map((tx) => (
+                      <li key={tx.id} className="detailed-transaction-item">
+                        <span className="tx-date">{tx.date}</span>
+                        <span className="tx-time">{tx.time}</span>
+                        <span className="tx-desc">{tx.description}</span>
+                        <span className="tx-recipient">{tx.recipient}</span>
+                        <span className="tx-amount">{tx.amount}</span>
+                        <span className="tx-fee">{tx.fee}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </div>
+          ) : selectedAccount ? (
+            <div className="account-detail">
+              <button className="dashboard-back-button" onClick={handleBackFromAccount}>
+                Back
+              </button>
+              <h4>{selectedAccount} Transactions</h4>
+              {totalBalances[selectedAccount] && (
+                <div className="balance">
+                  Total Balance: {totalBalances[selectedAccount]}
+                </div>
+              )}
+              <ul className="transaction-list">
+                {(mobileTransactions[selectedAccount] ||
+                  multiOptionTransactions[selectedAccount] ||
+                  []).map((tx) => (
+                  <li key={tx.id} className="transaction-item">
+                    <span className="tx-date">{tx.date}</span>
+                    <span className="tx-desc">
+                      {tx.description} ({tx.category})
+                    </span>
+                    <span className="tx-amount">{tx.amount}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : flashTab === "BillPay" ? (
+            <div className="billpay-view">
+              <h4>Utility Bills</h4>
+              <ul className="bill-list">
+                {dummyBills.map((bill) => (
+                  <li key={bill.id} className="bill-item">
+                    <span className="bill-company">{bill.company}</span>
+                    <span className="bill-amount">{bill.bill}</span>
+                    <span className="bill-due">Due: {bill.due}</span>
+                    <button className="dashboard-pay-now-button">Pay Now</button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
             <>
-              <div>div</div>
-              <div className="multiNodal">
-                multiNodal
-                <div className="logout-button">
-                  <button className="logout-button" onClick={handleLogout}>Logout</button>
+              <div className="flash-navbar">
+                <button
+                  className={`dashboard-flash-tab ${flashTab === "Accounts" ? "active" : ""}`}
+                  onClick={() => handleFlashTabClick("Accounts")}
+                >
+                  Accounts
+                </button>
+                <button
+                  className={`dashboard-flash-tab ${flashTab === "BillPay" ? "active" : ""}`}
+                  onClick={() => handleFlashTabClick("BillPay")}
+                >
+                  BillPay
+                </button>
+              </div>
+              <div className="accounts-glance">
+                <h4 className="ag-header">Accounts at a Glance</h4>
+                <ul className="accounts-list">
+                  {accountList.map((account) => {
+                    const recentTx = getRecentTransaction(account);
+                    return (
+                      <li key={account}>
+                        <button
+                          className="dashboard-service-button ag-button"
+                          onClick={() => handleAccountClick(account)}
+                        >
+                          {account}{" "}
+                          <span className="emoji">{getEmojiForBalance(totalBalances[account])}</span>
+                        </button>
+                        {recentTx && (
+                          <div className="recent-transaction">
+                            <strong>Most Recent:</strong>{" "}
+                            <span className="recent-desc">{recentTx.description}</span> –{" "}
+                            <span className="recent-amount">{recentTx.amount}</span>
+                          </div>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+                <div className="pie-charts">
+                  <div className="pie-chart-container">
+                    <h5>Debits by Category</h5>
+                    <PieChart data={debitTotals} />
+                    <Legend data={debitTotals} />
+                    <div className="pie-totals">
+                      <strong>Total Debits:</strong> ${totalDebits.toFixed(2)}
+                    </div>
+                  </div>
+                  <div className="pie-chart-container">
+                    <h5>Credits by Category</h5>
+                    <PieChart data={creditTotals} />
+                    <Legend data={creditTotals} />
+                    <div className="pie-totals">
+                      <strong>Total Credits:</strong> ${totalCredits.toFixed(2)}
+                    </div>
+                  </div>
                 </div>
               </div>
             </>
-          ) : showRegisterForm ? (
-            <div className="form-container">form-container</div>
-          ) : (
-            <div className="form-container">form-container</div>
           )}
-          <div id="formContainer" className="hidden">hidden</div>
-          <div className="tinyText">tinyText</div>
+        </div>
+
+        {/* MultiNodal Navigation */}
+        <div className="login-container1">
+          <div className="multiNodal1">
+            <div className="stacked-buttons1">
+              {multiOptions.map((option) => (
+                <button key={option} className="dashboard-nav-button1" onClick={() => handleMultiOptionClick(option)}>
+                  {option} {totalBalances[option] && <span className="balance-tag">({totalBalances[option]})</span>}
+                </button>
+              ))}
+            </div>
+            <div className="action-buttons1">
+              <button className="dashboard-action-button1" onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
-      
-
+      {/* Footer with Social Media Images */}
       <footer className="footer">
         <div className="followUs">
           Follow Us:
@@ -287,20 +442,20 @@ if (isLoggedIn) {
           <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
             <img src={youtube} alt="YouTube" />
           </a>
-          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">
-            <img src={tiktok} alt="TikTok" />
-          </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-            <img src={facebook} alt="Facebook" />
-          </a>
           <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
             <img src={twitter} alt="Twitter" />
           </a>
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
             <img src={instagram} alt="Instagram" />
           </a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">
+            <img src={tiktok} alt="TikTok" />
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <img src={facebook} alt="Facebook" />
+          </a>
         </div>
-        <div className='footerContent'></div>
+        <div className="footerContent">Footer Content</div>
         <div className="languageOptions">
           <select>
             <option value="en">EN</option>
@@ -309,7 +464,7 @@ if (isLoggedIn) {
           </select>
         </div>
       </footer>
-    </>
+    </div>
   );
 };
 

@@ -345,8 +345,8 @@ max-width: 400px;
     padding: 40px 30px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 85%;
-    max-width: 400px;
+    /* width: 85%; */
+    /* width: 400px; */
     font-family: 'Didact Gothic', sans-serif;
     height: auto; /* Adjust the height as needed */
     display: flex;
@@ -364,7 +364,7 @@ max-width: 400px;
     /* border-radius: 12px; */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px;
+    width: 400px;
     font-family: 'Didact Gothic', sans-serif;
     height: 70vh; /* Adjust the height as needed */
     display: flex;
@@ -517,7 +517,7 @@ max-width: 400px;
     }
 
     .news, .flash, .multiNodal {
-        width: 90%;
+        /* width: 90%; */
         height: auto;
     }
 
@@ -538,7 +538,7 @@ max-width: 400px;
     justify-content: space-between;
     height: 80vh; /* Adjust this for desired height */
     align-items: center;
-    width: 85%;
+    /* width: 85%; */
   }
   
   /* Navigation buttons should be stacked and nearly full-width */
