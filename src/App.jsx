@@ -30,6 +30,7 @@ import emp6 from './assets/emp6.png'
 import emp7 from './assets/emp7.png'
 import emp8 from './assets/emp8.png'
 import home from './assets/home.png'
+import Dashboard from './components/dashboard/dashboard'
 import './App.css';
 
 const images = [
@@ -69,7 +70,7 @@ const teamMembers = [
     name: "Cashius Banknote",
     role: "Chief Executive Officer",
     img: ceo,
-    bio: "Cashius leads our financial strategy with over 20 years of experience in global banking. His vision drives innovation and financial inclusion across our markets."
+    bio: "Cashius leads our financial strategy with over 20 years of experience in global banking. His vision drives innovation and financial inclusion across our markets. Cashius leads our financial strategy with over 20 years of experience in global banking. His vision drives innovation and financial inclusion across our markets. Cashius leads our financial strategy with over 20 years of experience in global banking. His vision drives innovation and financial inclusion across our markets. Cashius leads our financial strategy with over 20 years of experience in global banking. His vision drives innovation and financial inclusion across our markets."
   },
   {
     name: "Penny Wise",
@@ -127,6 +128,17 @@ const teamMembers = [
   }
 ];
 
+// // Dashboard Component (displayed after successful login)
+// const Dashboard = () => {
+//   return (
+//     <div className="dashboard">
+//       <h1>Dashboard</h1>
+//       <p>Welcome to your dashboard!</p>
+//       {/* You can add more dashboard-specific UI here */}
+//     </div>
+//   );
+// };
+
 
 const App = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -136,7 +148,12 @@ const App = () => {
   const [selectedMember, setSelectedMember] = useState(null);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const flashRef = useRef(null);
+
+  // Refs for login form inputs
+  const loginPhoneRef = useRef(null);
+  const loginPasswordRef = useRef(null);
 
   useEffect(() => {
     const imageInterval = setInterval(() => {
@@ -218,6 +235,25 @@ const App = () => {
       list.innerHTML += list.innerHTML; // Duplicate content for seamless scrolling
     }
   }, []);
+
+// Login form submission handler:
+const handleLoginSubmit = (e) => {
+  e.preventDefault();
+  const phone = loginPhoneRef.current.value;
+  const password = loginPasswordRef.current.value;
+
+  // Check against dummy credentials
+  if (phone === "12345678" && password === "password") {
+    setIsLoggedIn(true);
+  } else {
+    alert("Invalid credentials");
+  }
+};
+
+// If the user is logged in, render the Dashboard component:
+if (isLoggedIn) {
+  return <Dashboard />;
+}
 
   return (
     <>
@@ -557,18 +593,26 @@ const App = () => {
       ) : (
         <div className="form-container">
           <h2>Login</h2>
-          <form>
-            <div className="row">
+          <form onSubmit={handleLoginSubmit}>
+                        <div className="row">
               <div className="input-container">
-                <label htmlFor="login-email">Email</label>
-                <input type="email" id="login-email" placeholder="Enter your Email" />
+                <label htmlFor="login-email">Phone Number</label>
+                <input 
+                type="number" 
+                id="login-email" 
+                placeholder="Enter your Phone Number"
+                ref={loginPhoneRef} />
               </div>
             </div>
 
             <div className="row">
               <div className="input-container">
                 <label htmlFor="login-password">Password</label>
-                <input type="password" id="login-password" placeholder="Enter your Password" />
+                <input type="password" 
+                id="login-password" 
+                placeholder="Enter your Password"
+                ref={loginPasswordRef}
+                 />
               </div>
             </div>
 
