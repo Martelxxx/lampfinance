@@ -1,7 +1,7 @@
 /* Global Styles */
 html, body {
-    font-family: 'Didact Gothic', sans-serif;
-    font-size: 16px;
+  font-family: "Mona Sans", serif;
+  /* font-size: 16px; */
     height: 100%;
     margin: 0;
     display: flex;
@@ -18,7 +18,15 @@ html, body {
 }
 
 h2 {
-    font-family: 'Lexend Giga', sans-serif;
+  font-family: "Mona Sans", serif;
+  font-weight: 500;
+  border-bottom: 1px solid #f0a211;
+  /* background-color: #f0a211; */
+}
+
+p {
+  font-family: "Mona Sans", serif;
+  font-weight: 300;
 }
 
 /* Header Styling */
@@ -111,7 +119,7 @@ h2 {
 
 /* News Section */
 .news {
-max-width: 400px;
+  max-width: 400px;
     padding: 20px;
     /* border-radius: 10px; */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -130,7 +138,7 @@ max-width: 400px;
     flex: 1;
     padding: 20px;
     /* border-radius: 10px; */
-    background-color: rgba(237, 92, 22, 0.05);
+    background-color: rgba(244, 190, 88, 0.17);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -140,12 +148,13 @@ max-width: 400px;
 }
 
 .brief-news ul {
+  font-family: "Mona Sans", serif;
     list-style: none;
     padding: 0;
 }
 
 .brief-news ul li {
-    font-size: 14px;
+    font-size: 12.5px;
     margin-bottom: 8px;
     line-height: 1.5;
     padding-bottom: 10px;
@@ -163,7 +172,7 @@ max-width: 400px;
     flex: 1;
     padding: 20px;
     /* border-radius: 10px; */
-    background-color: rgba(237, 92, 22, 0.05);
+    background-color: rgba(244, 190, 88, 0.17);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -335,8 +344,8 @@ max-width: 400px;
 
 /* Multimodal Login Box */
 .multiNodal {
-    border-top: 20px solid rgba(244, 190, 88, 0.25);
-    border-bottom: 20px solid rgba(244, 190, 88, 0.25);
+    border-top: 20px solid rgba(244, 190, 88, 0.17);
+    border-bottom: 20px solid rgba(244, 190, 88, 0.17);
     flex: 1;
     display: flex;
     justify-content: center;
@@ -347,7 +356,7 @@ max-width: 400px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     /* width: 85%; */
     /* width: 400px; */
-    font-family: 'Didact Gothic', sans-serif;
+    font-family: "Mona Sans", serif;
     height: auto; /* Adjust the height as needed */
     display: flex;
     flex-direction: column;
@@ -363,14 +372,15 @@ max-width: 400px;
     padding: 20px;
     /* border-radius: 12px; */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    /* width: 100%; */
     width: 400px;
-    font-family: 'Didact Gothic', sans-serif;
+    font-family: "Mona Sans", serif;
     height: 70vh; /* Adjust the height as needed */
     display: flex;
     flex-direction: column;
     justify-content: space-around; /* Center form fields */
     margin-top: 20px; /* Adjust the distance from the top edge */
+    gap: 20px; /* Adjust the space between elements */
   }
 
 
@@ -425,8 +435,10 @@ max-width: 400px;
 
 .tinyText {
     padding: 10px;
+    margin-top: -25px;
     font-size: 10px;
     color: #666;
+    text-align: center;
 }
 
 /* Footer */
@@ -543,6 +555,7 @@ max-width: 400px;
   
   /* Navigation buttons should be stacked and nearly full-width */
   .stacked-buttons {
+    font-family: "Mona Sans", serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -552,8 +565,8 @@ max-width: 400px;
   
   /* Adjust Navigation Button Appearance */
 .nav-button {
-    font-family: 'Didact Gothic', sans-serif;
-    width: 95%; /* Almost end-to-end */
+  font-family: "Mona Sans", serif;
+  width: 95%; /* Almost end-to-end */
     height: 35px; /* Lower height for a sleeker look */
     padding: 8px 15px;
     font-size: 16px;

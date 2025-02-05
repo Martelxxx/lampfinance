@@ -513,7 +513,9 @@ if (isLoggedIn) {
         <>
           <div>
             <h2>New to Lamp Finance?</h2>
+            <br></br>
             <p>Click "Register" to sign up today. It only takes a few minutes!</p>
+            
           </div>
           <div className="multiNodal">
             {/* Navigation Buttons */}
